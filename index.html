@@ -3,249 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yosafat Solaiman | Software Engineer & Systems Innovator</title>
-    <!-- Tailwind CSS Engine -->
+    <title>Yosafat Solaiman | Systems Engineer & Academic Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        zinc: {
-                            850: '#141417',
-                            900: '#18181b',
-                            950: '#09090b',
-                        },
-                        accent: '#38bdf8',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #09090b; font-family: 'Inter', sans-serif; }
-        .radial-glow {
-            background: radial-gradient(circle 600px at 50% 0px, rgba(56, 189, 248, 0.08), transparent 80%);
-        }
-        .glass-panel {
-            background: rgba(24, 24, 27, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-panel:hover {
-            border-color: rgba(56, 189, 248, 0.3);
-            box-shadow: 0 0 30px -10px rgba(56, 189, 248, 0.15);
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #f4f4f5; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-card { background: rgba(24, 24, 27, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-card:hover { border-color: rgba(56, 189, 248, 0.3); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
-<body class="text-zinc-300 antialiased selection:bg-sky-500/20 selection:text-sky-200">
+<body class="selection:bg-sky-500 selection:text-zinc-950">
 
-    <!-- Ambient Glow Background -->
-    <div class="fixed inset-0 radial-glow pointer-events-none z-0"></div>
-
-    <!-- Navigation Bar (Linear Style) -->
-    <nav class="fixed top-0 inset-x-0 z-50 glass-panel border-b border-zinc-800/80 bg-zinc-950/70 backdrop-blur-md">
+    <!-- Sticky Header -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-card border-b border-zinc-800/80 bg-zinc-950/80">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="font-mono text-sm tracking-tight text-zinc-100 flex items-center gap-2">
+            <a href="#" class="font-bold text-lg tracking-tight text-white flex items-center gap-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse"></span>
-                yosafat.solaiman<span class="text-zinc-500">()</span>
+                <span>Yosafat Solaiman</span>
             </a>
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-                <a href="#about" class="hover:text-zinc-100 transition-colors">About</a>
-                <a href="#projects" class="hover:text-zinc-100 transition-colors">Projects</a>
-                <a href="#leadership" class="hover:text-zinc-100 transition-colors">Leadership</a>
-                <a href="#metrics" class="hover:text-zinc-100 transition-colors">Stats</a>
-            </div>
-            <div class="flex items-center gap-4">
-                <a href="Yosafat_Resume.pdf" target="_blank" class="text-xs font-mono px-3.5 py-1.5 rounded-md glass-panel text-zinc-200 hover:text-white hover:border-zinc-700 transition-all">
-                    Resume.pdf
+            <nav class="hidden md:flex items-center gap-6 text-sm text-zinc-400 font-medium">
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#mit" class="hover:text-white transition-colors">Lemelson-MIT</a>
+                <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+                <a href="#leadership" class="hover:text-white transition-colors">Leadership</a>
+                <a href="#athletics" class="hover:text-white transition-colors">Athletics</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="Yosafat_Resume.pdf" target="_blank" class="text-xs font-mono px-3.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 transition-all">
+                    Resume ↗
                 </a>
-                <a href="https://github.com/Yosafat-Solaiman" target="_blank" class="text-xs font-mono px-3.5 py-1.5 rounded-md bg-zinc-100 text-zinc-950 hover:bg-white font-semibold transition-all">
-                    GitHub
+                <a href="Yosafat_CV.pdf" target="_blank" class="text-xs font-mono px-3.5 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-zinc-950 font-semibold transition-all shadow-lg shadow-sky-500/20">
+                    CV ↗
                 </a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Main Content Container -->
-    <main class="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 space-y-28">
+    <!-- Hero Section -->
+    <section id="about" class="pt-32 pb-20 px-6 max-w-6xl mx-auto">
+        <div class="space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-mono">
+                <span class="w-2 h-2 rounded-full bg-sky-400"></span> Senior @ Mountain View High School (Rank 2 / 248)
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+                Engineering <span class="gradient-text">Sustainable Transit</span> & Civic Tech Systems
+            </h1>
+            <p class="text-zinc-400 text-lg md:text-xl max-w-2xl leading-relaxed">
+                High school senior in Los Angeles, CA with a 4.29 GPA. Lemelson-MIT Rail Fellow, NYLC Advisory Council Member, and web developer building accessible urban mobility software.
+            </p>
+            <div class="flex flex-wrap gap-4 pt-2">
+                <div class="glass-card rounded-xl p-4 border border-zinc-800 text-center min-w-[120px]">
+                    <div class="text-2xl font-bold text-white">4.29</div>
+                    <div class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Weighted GPA</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 border border-zinc-800 text-center min-w-[120px]">
+                    <div class="text-2xl font-bold text-sky-400">#2</div>
+                    <div class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Class Rank (248)</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 border border-zinc-800 text-center min-w-[120px]">
+                    <div class="text-2xl font-bold text-indigo-400">1 of 10</div>
+                    <div class="text-xs font-mono text-zinc-500 uppercase tracking-wider">NYLC US Advisory</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Hero Section -->
-        <section id="about" class="space-y-8">
-            <!-- Badge -->
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono glass-panel text-zinc-400">
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                Top 1% Senior Scholar • Class Rank 2/248 • GPA 4.29
+    <!-- Lemelson-MIT Research & Photo Gallery -->
+    <section id="mit" class="py-16 px-6 max-w-6xl mx-auto border-t border-zinc-800/60">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+            <div>
+                <span class="text-xs font-mono text-sky-400 uppercase tracking-wider">FELLOWSHIP & RESEARCH</span>
+                <h2 class="text-3xl font-bold text-white tracking-tight mt-1">Lemelson-MIT Rail Innovation Fellow</h2>
+            </div>
+            <span class="text-xs font-mono text-zinc-500">CA State Railroad Museum • Oct – Dec 2025</span>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- Research Summary -->
+            <div class="space-y-4">
+                <p class="text-zinc-300 leading-relaxed">
+                    Selected for a competitive statewide initiative (~180 students) co-hosted by <strong class="text-white">Lemelson-MIT</strong> and the California State Railroad Museum. Engineered sustainable rail transit solutions and defended technical research posters directly to executive leadership across 17 California transit agencies.
+                </p>
+                <ul class="space-y-2 text-sm text-zinc-400">
+                    <li class="flex items-start gap-2">
+                        <span class="text-sky-400 font-bold">✓</span> Presented live technical poster to 100+ executive stakeholders & transit professionals.
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-sky-400 font-bold">✓</span> Designed rider-safety & route-efficiency frameworks for municipal rail systems.
+                    </li>
+                </ul>
             </div>
 
-            <div class="space-y-4 max-w-3xl">
-                <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-zinc-100 leading-[1.1]">
-                    Engineered for high performance and scalable impact.
-                </h1>
-                <p class="text-lg sm:text-xl text-zinc-400 font-normal leading-relaxed">
-                    I'm Yosafat Solaiman—a full-stack developer, MIT invention alumnus, and national youth leader based in Los Angeles. Building software and sustainable hardware systems.
+            <!-- Image Showcase Grid -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="glass-card rounded-2xl overflow-hidden border border-zinc-800 group relative">
+                    <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80" alt="Lemelson MIT Presentation" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-zinc-950/90 to-transparent text-[11px] font-mono text-zinc-300">
+                        Poster Defense @ CA Railroad Museum
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden border border-zinc-800 group relative">
+                    <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=800&q=80" alt="Rail Transit System Research" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    <div class="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-zinc-950/90 to-transparent text-[11px] font-mono text-zinc-300">
+                        Transit Telemetry & Infrastructure
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engineering Projects Section -->
+    <section id="projects" class="py-16 px-6 max-w-6xl mx-auto border-t border-zinc-800/60">
+        <div class="mb-8">
+            <span class="text-xs font-mono text-sky-400 uppercase tracking-wider">FEATURED SOFTWARE</span>
+            <h2 class="text-3xl font-bold text-white tracking-tight mt-1">Subtivity Transit Explorer (v2.0)</h2>
+        </div>
+
+        <div class="glass-card rounded-2xl p-8 border border-zinc-800 relative overflow-hidden">
+            <div class="grid md:grid-cols-3 gap-6 items-center">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-mono bg-sky-500/10 text-sky-400 border border-sky-500/20">All Star Code Capstone</span>
+                        <span class="text-xs font-mono text-zinc-500">Live Web App</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">Subtivity Urban Mobility Web Application</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Interactive transit routing and station telemetry guide built during All Star Code and refactored into a high-performance, dark-mode visual system. Features live train pulses, station security index, dynamic city filtering, and interactive analytics.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-zinc-800/80 text-zinc-300">HTML5 / Tailwind</span>
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-zinc-800/80 text-zinc-300">Interactive SVG Maps</span>
+                        <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-zinc-800/80 text-zinc-300">Station Telemetry</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3 justify-center md:items-end">
+                    <a href="https://yosafat-solaiman.github.io/demo_day/" target="_blank" class="w-full md:w-auto text-center text-xs font-mono px-5 py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-zinc-950 font-bold transition-all shadow-lg shadow-sky-500/20">
+                        Launch Live Demo ↗
+                    </a>
+                    <a href="https://github.com/Yosafat-Solaiman/demo_day" target="_blank" class="w-full md:w-auto text-center text-xs font-mono px-5 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 transition-all">
+                        View GitHub Code ↗
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership & Credentials Section -->
+    <section id="leadership" class="py-16 px-6 max-w-6xl mx-auto border-t border-zinc-800/60">
+        <div class="mb-8">
+            <span class="text-xs font-mono text-sky-400 uppercase tracking-wider">APPOINTMENTS & FELLOWSHIPS</span>
+            <h2 class="text-3xl font-bold text-white tracking-tight mt-1">National Leadership</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="glass-card rounded-2xl p-6 border border-zinc-800 space-y-3">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-white text-lg">National Advisory Council</h3>
+                    <span class="text-xs font-mono text-zinc-500">2025 – Present</span>
+                </div>
+                <p class="text-xs font-mono text-sky-400">National Youth Leadership Council (NYLC)</p>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                    Appointed as 1 of 10 student leaders nationwide out of 350+ applicants. Advises executive board leadership on national service-learning policy and youth engagement.
                 </p>
             </div>
 
-            <!-- CTA Buttons & Tech Stack Badges -->
-            <div class="flex flex-wrap items-center gap-4 pt-2">
-                <a href="#projects" class="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-zinc-950 font-semibold text-sm transition-all shadow-lg shadow-sky-500/10">
-                    Explore Engineering Projects
-                </a>
-                <a href="https://www.linkedin.com/in/yosafat-solaiman-44276137b" target="_blank" class="px-5 py-2.5 rounded-lg glass-panel text-zinc-200 hover:text-white text-sm font-medium transition-all">
-                    Connect on LinkedIn
-                </a>
+            <div class="glass-card rounded-2xl p-6 border border-zinc-800 space-y-3">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-white text-lg">Tech Flex Leaders Fellow</h3>
+                    <span class="text-xs font-mono text-zinc-500">2025 – Present</span>
+                </div>
+                <p class="text-xs font-mono text-sky-400">America On Tech (AOT)</p>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                    Year-long web engineering fellowship under direct corporate tech mentorship. Modern web architecture, software engineering principles, and agile team workflows.
+                </p>
             </div>
+        </div>
+    </section>
 
-            <!-- Floating Tech Visual Pills -->
-            <div class="pt-6 flex flex-wrap gap-2 text-xs font-mono text-zinc-400">
-                <span class="px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800">Java</span>
-                <span class="px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800">Python</span>
-                <span class="px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800">JavaScript / HTML / CSS</span>
-                <span class="px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800">Bootstrap / Tailwind</span>
-                <span class="px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800">UI/UX Prototyping</span>
+    <!-- Varsity Athletics Section -->
+    <section id="athletics" class="py-16 px-6 max-w-6xl mx-auto border-t border-zinc-800/60 mb-12">
+        <div class="mb-8">
+            <span class="text-xs font-mono text-sky-400 uppercase tracking-wider">ATHLETICS & DISCIPLINE</span>
+            <h2 class="text-3xl font-bold text-white tracking-tight mt-1">Varsity Tennis</h2>
+        </div>
+
+        <div class="glass-card rounded-2xl p-8 border border-zinc-800 grid md:grid-cols-3 gap-6 items-center">
+            <div class="md:col-span-2 space-y-3">
+                <h3 class="text-xl font-bold text-white">Mountain View High School Varsity Tennis</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                    Competitive varsity match play requiring court strategy, endurance, and mental toughness under pressure. Applies physical spatial planning and tactical discipline alongside rigorous academic commitments.
+                </p>
             </div>
-        </section>
-
-        <!-- Bento Grid Projects Section -->
-        <section id="projects" class="space-y-6">
-            <div>
-                <h2 class="text-xs font-mono uppercase tracking-widest text-sky-400">Engineering Work</h2>
-                <p class="text-2xl font-semibold text-zinc-100 mt-1">Selected Technical Capstones</p>
+            <div class="glass-card rounded-xl p-4 text-center border border-zinc-800 bg-zinc-900/50">
+                <div class="text-xs font-mono text-sky-400 uppercase tracking-wider mb-1">Athletic Focus</div>
+                <div class="text-lg font-bold text-white">Singles / Doubles Match Play</div>
             </div>
+        </div>
+    </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <!-- Large Card (Span 2) -->
-                <div class="md:col-span-2 glass-panel rounded-2xl p-7 flex flex-col justify-between transition-all duration-300">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between text-xs font-mono text-zinc-500">
-                            <span>ALL STAR CODE CAPSTONE</span>
-                            <span>2026</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-zinc-100">Subtivity — Subway Recommendation App</h3>
-                        <p class="text-zinc-400 text-sm leading-relaxed">
-                            Engineered responsive CSS/UI layouts and application logic for a transit navigation capstone. Pitched live to software engineers, tech executives, and industry leaders during Demo Day.
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-2 mt-6 text-xs font-mono text-sky-400">
-                        <span>HTML5</span> • <span>CSS3</span> • <span>JavaScript</span>
-                    </div>
-                </div>
-
-                <!-- Single Card -->
-                <div class="glass-panel rounded-2xl p-7 flex flex-col justify-between transition-all duration-300">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between text-xs font-mono text-zinc-500">
-                            <span>MIT INNOVATION</span>
-                            <span>2025</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-zinc-100">Sustainable Rail Design</h3>
-                        <p class="text-zinc-400 text-sm leading-relaxed">
-                            Selected for Lemelson-MIT Rail Innovation (~180 students statewide). Led engineering proposal exhibited at CA State Railroad Museum to 100+ leaders across 17 agencies.
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-2 mt-6 text-xs font-mono text-sky-400">
-                        <span>Transit Engineering</span> • <span>Research</span>
-                    </div>
-                </div>
-
-                <!-- Single Card -->
-                <div class="glass-panel rounded-2xl p-7 flex flex-col justify-between transition-all duration-300">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between text-xs font-mono text-zinc-500">
-                            <span>MIT PROGRAM</span>
-                            <span>2025</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-zinc-100">Mobile App Prototype</h3>
-                        <p class="text-zinc-400 text-sm leading-relaxed">
-                            1 of 20 LA County students selected. Conceptualized, user-tested, and prototyped a mobile solution, pitching the business model to college faculty and MIT representatives.
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-2 mt-6 text-xs font-mono text-sky-400">
-                        <span>Prototyping</span> • <span>UI/UX</span>
-                    </div>
-                </div>
-
-                <!-- Large Card (Span 2) -->
-                <div class="md:col-span-2 glass-panel rounded-2xl p-7 flex flex-col justify-between transition-all duration-300">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between text-xs font-mono text-zinc-500">
-                            <span>AMERICA ON TECH</span>
-                            <span>2026 - PRESENT</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-zinc-100">Tech Flex Leaders Scholar</h3>
-                        <p class="text-zinc-400 text-sm leading-relaxed">
-                            Participating in a year-long web development fellowship building production-level frontend web applications under weekly mentorship from industry engineers.
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-2 mt-6 text-xs font-mono text-sky-400">
-                        <span>Frontend Engineering</span> • <span>Mentorship</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Leadership Section -->
-        <section id="leadership" class="space-y-6">
-            <div>
-                <h2 class="text-xs font-mono uppercase tracking-widest text-sky-400">National & Regional Roles</h2>
-                <p class="text-2xl font-semibold text-zinc-100 mt-1">Leadership & Governance</p>
-            </div>
-
-            <div class="space-y-4">
-                <div class="glass-panel rounded-xl p-6 transition-all">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <div>
-                            <h3 class="font-semibold text-zinc-100 text-base">National Advisory Council Member</h3>
-                            <p class="text-xs font-mono text-zinc-400">National Youth Leadership Council (NYLC)</p>
-                        </div>
-                        <span class="text-xs font-mono text-zinc-500">1 of 10 Selected Nationwide (350+ Applicants)</span>
-                    </div>
-                    <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
-                        Co-creating national youth leadership reports, advising executive leadership staff, and organizing frameworks for the National Service-Learning Conference.
-                    </p>
-                </div>
-
-                <div class="glass-panel rounded-xl p-6 transition-all">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <div>
-                            <h3 class="font-semibold text-zinc-100 text-base">Core Leader & Organizing Intern</h3>
-                            <p class="text-xs font-mono text-zinc-400">CHIRLA, Wise Up</p>
-                        </div>
-                        <span class="text-xs font-mono text-zinc-500">Selected from Hundreds</span>
-                    </div>
-                    <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
-                        Developing grassroots policy education and political strategy supporting California Dream Resource Center legislation (AB 278).
-                    </p>
-                </div>
-
-                <div class="glass-panel rounded-xl p-6 transition-all">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <div>
-                            <h3 class="font-semibold text-zinc-100 text-base">Vice President & Member</h3>
-                            <p class="text-xs font-mono text-zinc-400">Student Site Council — Mountain View HS</p>
-                        </div>
-                        <span class="text-xs font-mono text-zinc-500">1,100 Students Represented</span>
-                    </div>
-                    <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
-                        Collaborated with school principal and faculty to analyze discipline and attendance metrics, co-draft annual improvement goals, and deliberate school budget allocations.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Clean SaaS Footer -->
-    <footer class="border-t border-zinc-800/80 bg-zinc-950 py-12 text-center text-xs font-mono text-zinc-500">
-        <p>Built with Tailwind CSS & HTML5 • Designed for Yosafat Solaiman</p>
-        <p class="mt-2 text-zinc-600">© 2026 Yosafat Solaiman. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800/80 py-8 px-6 text-center text-xs font-mono text-zinc-500">
+        <p>© 2026 Yosafat Solaiman • Built with HTML5 & Tailwind CSS</p>
     </footer>
 
 </body>
