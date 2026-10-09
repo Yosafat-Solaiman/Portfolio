@@ -6,14 +6,12 @@
     <title>Yosafat Solaiman | Systems Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- Matter.js Physics Engine -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #050505; color: #ededed; overflow-x: hidden; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* Terminal Loader Styles */
         #boot-loader {
             position: fixed; inset: 0; z-index: 99999;
             background-color: #050505;
@@ -22,7 +20,6 @@
         }
         .hide-loader { opacity: 0; transform: translateY(-20px); pointer-events: none; }
 
-        /* Scroll Reveal Animation */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -46,7 +43,6 @@
             transform: translateY(-5px);
         }
         
-        /* Physics block styling */
         .physics-item {
             position: absolute; top: 0; left: 0;
             will-change: transform; cursor: grab; user-select: none;
@@ -60,14 +56,17 @@
             height: 8px; animation: scanline 6s linear infinite; opacity: 0.2;
         }
         @keyframes scanline { 0% { transform: translateY(-100vh); } 100% { transform: translateY(100vh); } }
+
+        /* Custom Scrollbar for Terminal */
+        #terminal-output::-webkit-scrollbar { width: 6px; }
+        #terminal-output::-webkit-scrollbar-thumb { background: #22d3ee; border-radius: 4px; }
     </style>
 </head>
 <body class="selection:bg-cyan-500 selection:text-black antialiased relative overflow-hidden">
 
-    <!-- Terminal Boot Loader -->
     <div id="boot-loader">
         <div class="font-mono text-left max-w-lg w-full px-6">
-            <p class="text-cyan-500 mb-2">Initialize YS_OS v2.0...</p>
+            <p class="text-cyan-500 mb-2">Initialize YS_OS v2.1...</p>
             <p class="text-zinc-500 text-sm mb-1">[ OK ] Loading system architecture</p>
             <p class="text-zinc-500 text-sm mb-1">[ OK ] Injecting Tailwind CSS protocols</p>
             <p class="text-zinc-500 text-sm mb-4">[ OK ] Starting physics engine</p>
@@ -81,7 +80,6 @@
     <div class="cyber-grid"></div>
     <div class="scanline-overlay"></div>
 
-    <!-- Navigation -->
     <header class="fixed top-0 w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/10 opacity-0 transition-opacity duration-1000" id="main-nav">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-4 group cursor-pointer">
@@ -92,7 +90,7 @@
             <nav class="hidden md:flex items-center gap-10 text-xs font-mono font-bold tracking-widest text-zinc-400">
                 <a href="#research" class="hover:text-cyan-400 transition-colors">01. RESEARCH</a>
                 <a href="#engineering" class="hover:text-cyan-400 transition-colors">02. SYSTEMS</a>
-                <a href="#leadership" class="hover:text-cyan-400 transition-colors">03. INFRASTRUCTURE</a>
+                <a href="#leadership" class="hover:text-cyan-400 transition-colors">03. IMPACT</a>
             </nav>
 
             <div class="flex items-center gap-4">
@@ -102,7 +100,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="pt-40 pb-20 px-6 max-w-7xl mx-auto relative z-10 reveal">
         <div class="max-w-5xl mb-12">
             <div class="inline-flex items-center gap-3 px-4 py-1.5 mb-8 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 text-xs font-mono shadow-[0_0_20px_rgba(34,211,238,0.15)] backdrop-blur-md cursor-default">
@@ -113,7 +110,6 @@
                 USER.AUTH: YOSAFAT_S // SECURE CONNECTION
             </div>
             
-            <!-- PERIOD REMOVED -->
             <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-[1.05] mb-6">
                 Coding interactive web apps <br> 
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">& building systems</span> <br> 
@@ -121,23 +117,20 @@
             </h1>
             
             <p class="text-zinc-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl border-l-4 border-cyan-500 pl-6">
-                High school senior developing modern software, optimizing transit infrastructure, and leading community initiatives. 
+                High school senior developing modern software, optimizing transit infrastructure, and leveraging technical systems for community advocacy. 
             </p>
         </div>
 
-        <!-- PHYSICS PLAYGROUND (Upgraded) -->
         <div class="mb-8 reveal delay-100">
             <p class="text-cyan-400 font-mono text-xs uppercase tracking-widest font-bold mb-2 animate-pulse flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
                 My Tech Stack (Grab & Throw!)
             </p>
             <div id="physics-container" class="relative w-full h-[350px] border border-cyan-500/20 rounded-2xl bg-zinc-950/50 overflow-hidden shadow-[inset_0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-sm cursor-crosshair">
-                
-                <!-- NEW ACCURATE CODING BLOCKS -->
                 <div class="physics-item px-5 py-2 bg-orange-600 text-white font-extrabold rounded-lg border border-white/20">HTML</div>
                 <div class="physics-item px-5 py-2 bg-blue-600 text-white font-extrabold rounded-lg border border-white/20">CSS</div>
                 <div class="physics-item px-5 py-2 bg-yellow-400 text-black font-extrabold rounded-lg border border-white/20">JavaScript</div>
-                <div class="physics-item px-5 py-2 bg-cyan-400 text-black font-extrabold rounded-lg border border-white/20">Tailwind CSS</div>
+                <div class="physics-item px-5 py-2 bg-cyan-400 text-black font-extrabold rounded-lg border border-white/20">Tailwind</div>
                 <div class="physics-item px-5 py-2 bg-violet-500 text-white font-extrabold rounded-lg border border-white/20">Python</div>
                 <div class="physics-item px-5 py-2 bg-red-600 text-white font-extrabold rounded-lg border border-white/20">Java</div>
                 <div class="physics-item px-6 py-3 bg-emerald-400 text-black font-extrabold rounded-full aspect-square flex items-center justify-center border border-white/20">4.29 GPA</div>
@@ -145,36 +138,7 @@
         </div>
     </section>
 
-    <!-- Research & Fellowship -->
-    <section id="research" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10 relative reveal">
-        <div class="grid lg:grid-cols-2 gap-20 items-center">
-            <div>
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="h-px w-12 bg-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.8)]"></div>
-                    <span class="text-sm font-mono text-cyan-400 font-bold uppercase tracking-widest">01 // Research Deployment</span>
-                </div>
-                <h2 class="text-5xl font-black tracking-tighter text-white mb-8 leading-tight">Lemelson-MIT <br>Rail Innovation Fellow.</h2>
-                <p class="text-zinc-400 text-lg leading-relaxed mb-8">
-                    Selected from a competitive statewide pool of 180 students for an elite engineering initiative co-hosted by Lemelson-MIT and the California State Railroad Museum. Engineered sustainable route-efficiency frameworks for municipal rail systems.
-                </p>
-                <div class="premium-card p-8 rounded-2xl border-l-4 border-l-cyan-500 hover:scale-105 transition-transform duration-300">
-                    <h4 class="text-white font-bold text-xl mb-3 flex items-center gap-3">
-                        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                        Executive Pitch Defense
-                    </h4>
-                    <p class="text-zinc-400 leading-relaxed">Successfully defended a technical research poster directly to over 100 executive stakeholders representing 17 California transit agencies.</p>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-2 gap-6 relative">
-                <div class="absolute -inset-4 border border-cyan-500/20 rounded-3xl -z-10 bg-cyan-950/10"></div>
-                <img src="railroad-poster.jpg" alt="Poster Defense" class="rounded-2xl w-full h-72 object-cover border border-white/10 hover:border-cyan-400 transition-all hover:-translate-y-2">
-                <img src="mit-pitch.jpg" alt="MIT Pitch" class="mt-12 rounded-2xl w-full h-72 object-cover border border-white/10 hover:border-violet-400 transition-all hover:-translate-y-2">
-            </div>
-        </div>
-    </section>
-
-    <!-- Engineering (Subtivity) -->
+    <!-- Engineering (Subtivity) - Upgraded to Case Study Format -->
     <section id="engineering" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10 reveal">
         <div class="mb-16">
             <div class="flex items-center gap-4 mb-4">
@@ -184,146 +148,186 @@
             <h2 class="text-5xl font-black tracking-tighter text-white">Subtivity Transit Explorer</h2>
         </div>
 
-        <div class="bg-zinc-950/90 border border-white/10 rounded-[22px] p-8 md:p-12 lg:flex items-center gap-12 relative z-10 hover:border-cyan-500/30 transition-colors duration-500">
-            <div class="lg:w-1/2 mb-10 lg:mb-0 space-y-8">
+        <div class="bg-zinc-950/90 border border-white/10 rounded-[22px] p-8 md:p-12 lg:flex gap-12 relative z-10 hover:border-cyan-500/30 transition-colors duration-500">
+            <div class="lg:w-1/2 mb-10 lg:mb-0 space-y-6">
                 <h3 class="text-4xl font-black text-white">Urban Mobility <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Architecture.</span></h3>
                 
-                <p class="text-zinc-400 text-lg leading-relaxed">
-                    An interactive subway routing application built as my All Star Code Capstone. Engineered complex interface logic and real-time station analytics packaged in a high-performance terminal UI.
-                </p>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="text-cyan-400 font-mono text-xs font-bold uppercase tracking-widest mb-1">The Challenge</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Commuters lack unified, real-time spatial awareness of metropolitan transit delays, leading to compounding infrastructural bottlenecks.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-violet-400 font-mono text-xs font-bold uppercase tracking-widest mb-1">The Architecture</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Engineered a lightweight, vanilla JavaScript routing application (All Star Code Capstone) utilizing live telemetry data. Built without heavy frameworks to reduce client-side latency.</p>
+                    </div>
+                </div>
                 
                 <div class="flex flex-wrap gap-3">
-                    <span class="px-4 py-2 bg-orange-950/50 rounded-lg text-xs font-mono text-orange-400 border border-orange-500/30">HTML5</span>
-                    <span class="px-4 py-2 bg-blue-950/50 rounded-lg text-xs font-mono text-blue-400 border border-blue-500/30">Tailwind CSS</span>
-                    <span class="px-4 py-2 bg-yellow-950/50 rounded-lg text-xs font-mono text-yellow-400 border border-yellow-500/30">JavaScript</span>
+                    <span class="px-3 py-1.5 bg-orange-950/50 rounded text-xs font-mono text-orange-400 border border-orange-500/30">HTML5</span>
+                    <span class="px-3 py-1.5 bg-blue-950/50 rounded text-xs font-mono text-blue-400 border border-blue-500/30">Tailwind CSS</span>
+                    <span class="px-3 py-1.5 bg-yellow-950/50 rounded text-xs font-mono text-yellow-400 border border-yellow-500/30">Vanilla JS</span>
                 </div>
                 
                 <div class="pt-4 flex gap-4">
-                    <a href="https://yosafat-solaiman.github.io/demo_day/" target="_blank" class="px-8 py-4 bg-white hover:bg-cyan-400 text-black font-extrabold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.6)]">INITIATE APP</a>
-                    <a href="https://github.com/Yosafat-Solaiman/demo_day" target="_blank" class="px-8 py-4 bg-zinc-900 hover:bg-black text-white font-bold rounded-xl text-sm border border-zinc-700 hover:border-white transition-all">SOURCE CODE</a>
+                    <a href="https://yosafat-solaiman.github.io/demo_day/" target="_blank" class="px-6 py-3 bg-white hover:bg-cyan-400 text-black font-extrabold rounded-lg text-sm transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.6)]">INITIATE APP</a>
                 </div>
             </div>
             
-            <div class="lg:w-1/2 bg-black h-96 rounded-2xl p-6 relative border border-zinc-800 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] group">
-                <div class="flex gap-2 mb-6">
+            <!-- LIVE INTERACTIVE TERMINAL -->
+            <div class="lg:w-1/2 bg-black h-96 rounded-2xl p-6 relative border border-zinc-800 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] flex flex-col font-mono text-sm text-zinc-400 group">
+                <div class="flex gap-2 mb-4 shrink-0">
                     <div class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_5px_red]"></div>
                     <div class="w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_5px_yellow]"></div>
                     <div class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_5px_green]"></div>
                 </div>
-                <div class="font-mono text-sm space-y-2 text-zinc-400 transition-transform duration-300 group-hover:scale-105">
-                    <p><span class="text-cyan-400">root@YS_OS</span>:~/subtivity$ ./start_server.sh</p>
-                    <p class="text-zinc-500">[INFO] Booting system telemetry...</p>
-                    <p class="text-zinc-500">[INFO] Connecting to transit API...</p>
-                    <p class="text-green-400 animate-pulse mt-4">SUCCESS: Data stream active.</p>
+                
+                <div id="terminal-output" class="flex-1 overflow-y-auto mb-2 space-y-2 pr-2">
+                    <p class="text-cyan-400">Welcome to YS_OS Shell.</p>
+                    <p>Type 'help' to see available commands.</p>
+                </div>
+
+                <div class="flex items-center gap-2 shrink-0 border-t border-zinc-800 pt-3 mt-auto">
+                    <span class="text-cyan-400">root@YS_OS:~$</span>
+                    <input type="text" id="terminal-input" class="bg-transparent text-white outline-none flex-1 focus:ring-0 placeholder-zinc-700" placeholder="_" autocomplete="off">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Leadership Infrastructure -->
+    <!-- Impact & Leadership -->
     <section id="leadership" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10 reveal">
         <div class="mb-16">
             <div class="flex items-center gap-4 mb-4">
                 <div class="h-px w-12 bg-cyan-500"></div>
                 <span class="text-sm font-mono text-cyan-400 font-bold uppercase tracking-widest">03 // Broad Operations</span>
             </div>
-            <h2 class="text-5xl font-black tracking-tighter text-white">Leadership & Infrastructure</h2>
+            <h2 class="text-5xl font-black tracking-tighter text-white">Impact & Infrastructure</h2>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- ALL STAR CODE ADDED HERE -->
-            <div class="premium-card p-8 rounded-3xl border-t-2 border-t-yellow-500 lg:col-span-2 group">
-                <h3 class="text-2xl font-black text-white mb-2 group-hover:text-yellow-400 transition-colors">All-Star Code Scholar</h3>
-                <p class="text-yellow-500 text-sm font-mono font-bold tracking-widest mb-4">SOFTWARE ENGINEERING COHORT</p>
-                <p class="text-zinc-400">Completed an intensive summer computer science program focusing on web development, technical networking, and entrepreneurial skills, culminating in a capstone demo day.</p>
+            <div class="premium-card p-8 rounded-3xl border-t-2 border-t-emerald-500 group lg:col-span-2">
+                <h3 class="text-2xl font-black text-white mb-2 group-hover:text-emerald-400 transition-colors">CHIRLA / WiseUp // Impact Tech</h3>
+                <p class="text-emerald-500 text-sm font-mono font-bold tracking-widest mb-4">CORE LEADER</p>
+                <p class="text-zinc-400">Bridging the gap between legislative advocacy and technical data analysis. Orchestrating political education frameworks supporting CA transit legislation (AB 278) while utilizing structured data to track community engagement metrics.</p>
             </div>
 
             <div class="premium-card p-8 rounded-3xl border-t-2 border-t-cyan-500 group">
                 <h3 class="text-2xl font-black text-white mb-2 group-hover:text-cyan-400 transition-colors">NYLC Advisory</h3>
                 <p class="text-cyan-500 text-sm font-mono font-bold tracking-widest mb-4">1 OF 10 SELECTED</p>
-                <p class="text-zinc-400">Appointed from 350+ applicants to advise the executive board of the National Youth Leadership Council.</p>
-            </div>
-
-            <div class="premium-card p-8 rounded-3xl border-t-2 border-t-violet-500 group">
-                <h3 class="text-xl font-black text-white mb-2 group-hover:text-violet-400 transition-colors">MIT Invention Program</h3>
-                <p class="text-violet-500 text-sm font-mono font-bold tracking-widest mb-4">PROTOTYPE DEVELOPER</p>
-                <p class="text-zinc-400 text-sm">Earned 1 of 20 spots in a regional design-thinking intensive to conceptualize and pitch mobile app prototypes.</p>
-            </div>
-
-            <div class="premium-card p-8 rounded-3xl border-t-2 border-t-blue-500 group">
-                <h3 class="text-xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors">Tech Flex Fellow</h3>
-                <p class="text-blue-500 text-sm font-mono font-bold tracking-widest mb-4">AMERICA ON TECH</p>
-                <p class="text-zinc-400 text-sm">Rigorous software engineering fellowship under corporate mentorship to master modern web architecture.</p>
+                <p class="text-zinc-400 text-sm">Appointed from 350+ applicants to advise the executive board of the National Youth Leadership Council.</p>
             </div>
             
-            <div class="premium-card p-8 rounded-3xl border-t-2 border-t-emerald-500 group">
-                <h3 class="text-xl font-black text-white mb-2 group-hover:text-emerald-400 transition-colors">CHIRLA / WiseUp</h3>
-                <p class="text-emerald-500 text-sm font-mono font-bold tracking-widest mb-4">CORE LEADER</p>
-                <p class="text-zinc-400 text-sm">Selected for a year-long role orchestrating political education and advocacy supporting CA transit legislation.</p>
+            <div class="premium-card p-8 rounded-3xl border-t-2 border-t-yellow-500 group">
+                <h3 class="text-xl font-black text-white mb-2 group-hover:text-yellow-400 transition-colors">All-Star Code Scholar</h3>
+                <p class="text-yellow-500 text-sm font-mono font-bold tracking-widest mb-4">ENGINEERING COHORT</p>
+                <p class="text-zinc-400 text-sm">Completed an intensive summer CS program focusing on web architecture and technical scaling.</p>
+            </div>
+
+            <div class="premium-card p-8 rounded-3xl border-t-2 border-t-blue-500 group lg:col-span-2">
+                <h3 class="text-xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors">Tech Flex Fellow (America on Tech)</h3>
+                <p class="text-blue-500 text-sm font-mono font-bold tracking-widest mb-4">FELLOWSHIP</p>
+                <p class="text-zinc-400 text-sm">Rigorous software engineering fellowship under direct corporate mentorship to master modern web architecture, algorithmic thinking, and professional development pipelines.</p>
             </div>
         </div>
     </section>
 
-    <!-- Tech Footer -->
-    <footer class="border-t border-white/10 py-16 px-6 bg-black text-center text-zinc-500 font-mono text-xs">
-        <p>SYS.ARCH // © 2027 YOSAFAT SOLAIMAN</p>
+    <!-- Footer with Micro-Interaction Copy Button -->
+    <footer class="border-t border-white/10 py-16 px-6 bg-black flex flex-col items-center gap-6">
+        
+        <button id="copy-email-btn" onclick="copyEmail()" class="flex items-center gap-3 px-6 py-3 rounded-full bg-zinc-900 border border-zinc-700 hover:border-cyan-500 hover:bg-zinc-800 transition-all group relative">
+            <svg id="email-icon" class="w-4 h-4 text-zinc-400 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            
+            <svg id="check-icon" class="w-4 h-4 text-green-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            
+            <span id="email-text" class="text-sm font-mono text-zinc-300 group-hover:text-white transition-colors">Copy Email Address</span>
+        </button>
+
+        <p class="text-zinc-600 font-mono text-xs mt-4">SYS.ARCH // © 2027 YOSAFAT SOLAIMAN</p>
     </footer>
 
-    <!-- Interactive Scripts -->
     <script>
-        // 1. BOOT LOADER LOGIC
+        // 1. BOOT LOADER & SCROLL REVEAL
         window.addEventListener('load', () => {
-            const progressBar = document.getElementById('progress-bar');
-            const bootStatus = document.getElementById('boot-status');
-            const loader = document.getElementById('boot-loader');
-            const nav = document.getElementById('main-nav');
-            
-            // Animate progress bar
-            setTimeout(() => { progressBar.style.width = '100%'; }, 200);
-            
-            // Remove loader and unlock scrolling
+            document.getElementById('progress-bar').style.width = '100%';
             setTimeout(() => {
-                bootStatus.innerText = "ACCESS GRANTED.";
-                bootStatus.classList.replace('text-white', 'text-cyan-400');
+                document.getElementById('boot-status').innerText = "ACCESS GRANTED.";
+                document.getElementById('boot-status').classList.replace('text-white', 'text-cyan-400');
             }, 1200);
-
             setTimeout(() => {
-                loader.classList.add('hide-loader');
+                document.getElementById('boot-loader').classList.add('hide-loader');
                 document.body.classList.remove('overflow-hidden');
-                nav.style.opacity = '1';
-                
-                // Trigger scroll reveals for elements already in viewport
+                document.getElementById('main-nav').style.opacity = '1';
                 revealElements();
             }, 1800);
         });
 
-        // 2. SCROLL REVEAL ANIMATIONS
         function revealElements() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 100) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", revealElements);
 
-        // 3. OPTIMIZED MATTER.JS PHYSICS
+        // 2. INTERACTIVE TERMINAL LOGIC
+        const termInput = document.getElementById('terminal-input');
+        const termOutput = document.getElementById('terminal-output');
+        
+        termInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const command = this.value.trim().toLowerCase();
+                if(!command) return;
+                
+                termOutput.innerHTML += `<p><span class="text-cyan-400">root@YS_OS:~$</span> ${command}</p>`;
+                
+                if (command === 'help') {
+                    termOutput.innerHTML += `<p class="text-zinc-500">Available commands: <span class="text-white">stack, status, clear</span></p>`;
+                } else if (command === 'stack') {
+                    termOutput.innerHTML += `<p class="text-zinc-500">Current stack: HTML, CSS, JS, Tailwind, Python, Java, Matter.js</p>`;
+                } else if (command === 'status') {
+                    termOutput.innerHTML += `<p class="text-green-400">System Nominal. Uptime: 99.9%</p>`;
+                } else if (command === 'clear') {
+                    termOutput.innerHTML = '';
+                } else {
+                    termOutput.innerHTML += `<p class="text-red-400">Command not found: ${command}. Type 'help'</p>`;
+                }
+                
+                this.value = '';
+                termOutput.scrollTop = termOutput.scrollHeight;
+            }
+        });
+
+        // 3. COPY EMAIL MICRO-INTERACTION
+        function copyEmail() {
+            const email = "yosafat.solaiman@example.com"; // Replace with real email
+            navigator.clipboard.writeText(email).then(() => {
+                const text = document.getElementById('email-text');
+                const mailIcon = document.getElementById('email-icon');
+                const checkIcon = document.getElementById('check-icon');
+                
+                text.innerText = "Copied to Clipboard!";
+                text.classList.replace('text-zinc-300', 'text-green-400');
+                mailIcon.classList.add('hidden');
+                checkIcon.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    text.innerText = "Copy Email Address";
+                    text.classList.replace('text-green-400', 'text-zinc-300');
+                    mailIcon.classList.remove('hidden');
+                    checkIcon.classList.add('hidden');
+                }, 2500);
+            });
+        }
+
+        // 4. FIXED MATTER.JS PHYSICS (THICK BOUNDARIES)
         document.addEventListener("DOMContentLoaded", () => {
             const container = document.getElementById('physics-container');
             const items = document.querySelectorAll('.physics-item');
             
-            const Engine = Matter.Engine,
-                  Render = Matter.Render,
-                  Runner = Matter.Runner,
-                  Bodies = Matter.Bodies,
-                  Composite = Matter.Composite,
-                  Mouse = Matter.Mouse,
-                  MouseConstraint = Matter.MouseConstraint;
-
+            const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint } = Matter;
             const engine = Engine.create();
             
             const render = Render.create({
@@ -334,41 +338,38 @@
                     height: container.clientHeight,
                     background: 'transparent',
                     wireframes: false,
-                    pixelRatio: window.devicePixelRatio // Fixes blurriness/lag on nice screens
+                    pixelRatio: window.devicePixelRatio
                 }
             });
-            render.canvas.style.opacity = '0'; // Hide canvas so we see HTML
+            render.canvas.style.opacity = '0';
 
-            // Add boundaries
-            const floor = Bodies.rectangle(container.clientWidth / 2, container.clientHeight + 25, container.clientWidth, 50, { isStatic: true });
-            const leftWall = Bodies.rectangle(-25, container.clientHeight / 2, 50, container.clientHeight, { isStatic: true });
-            const rightWall = Bodies.rectangle(container.clientWidth + 25, container.clientHeight / 2, 50, container.clientHeight, { isStatic: true });
-            const ceiling = Bodies.rectangle(container.clientWidth / 2, -500, container.clientWidth, 50, { isStatic: true }); // Prevent throwing them out the top
+            // FIX: Massive 5000px thick walls to prevent blocks from glitching through the barrier
+            const wallOptions = { isStatic: true, render: { visible: false } };
+            const floor = Bodies.rectangle(container.clientWidth / 2, container.clientHeight + 2500, container.clientWidth + 1000, 5000, wallOptions);
+            const ceiling = Bodies.rectangle(container.clientWidth / 2, -2500, container.clientWidth + 1000, 5000, wallOptions);
+            const leftWall = Bodies.rectangle(-2500, container.clientHeight / 2, 5000, container.clientHeight + 1000, wallOptions);
+            const rightWall = Bodies.rectangle(container.clientWidth + 2500, container.clientHeight / 2, 5000, container.clientHeight + 1000, wallOptions);
 
-            Composite.add(engine.world, [floor, leftWall, rightWall, ceiling]);
+            Composite.add(engine.world, [floor, ceiling, leftWall, rightWall]);
 
-            // Sync HTML to Bodies
             const bodies = [];
             items.forEach((item, index) => {
                 const width = item.offsetWidth;
                 const height = item.offsetHeight;
-                
                 const startX = (container.clientWidth / 2) + (Math.random() * 200 - 100);
-                const startY = 20 + (index * 30); // Clean drop cascade
+                const startY = 20 + (index * 30); 
                 
                 let body;
-                // Bouncier restitution (0.7) and smoother friction
                 if(item.classList.contains('rounded-full')) {
-                    body = Bodies.circle(startX, startY, width/2, { restitution: 0.8, friction: 0.05, density: 0.04 });
+                    body = Bodies.circle(startX, startY, width/2, { restitution: 0.6, friction: 0.1, density: 0.05 });
                 } else {
-                    body = Bodies.rectangle(startX, startY, width, height, { restitution: 0.7, friction: 0.1, density: 0.04 });
+                    body = Bodies.rectangle(startX, startY, width, height, { restitution: 0.5, friction: 0.2, density: 0.05 });
                 }
                 
                 bodies.push({ body: body, element: item });
                 Composite.add(engine.world, body);
             });
 
-            // Smooth Mouse Interaction
             const mouse = Mouse.create(container);
             const mouseConstraint = MouseConstraint.create(engine, {
                 mouse: mouse,
@@ -377,7 +378,6 @@
             Composite.add(engine.world, mouseConstraint);
             render.mouse = mouse;
 
-            // Update Loop for HTML elements
             Matter.Events.on(engine, 'afterUpdate', function() {
                 bodies.forEach(obj => {
                     const { body, element } = obj;
@@ -385,13 +385,11 @@
                 });
             });
 
-            // Resize handling
             window.addEventListener('resize', () => {
                 render.canvas.width = container.clientWidth;
                 render.canvas.height = container.clientHeight;
-                Matter.Body.setPosition(floor, { x: container.clientWidth / 2, y: container.clientHeight + 25 });
-                Matter.Body.setVertices(floor, Matter.Bodies.rectangle(container.clientWidth / 2, container.clientHeight + 25, container.clientWidth, 50).vertices);
-                Matter.Body.setPosition(rightWall, { x: container.clientWidth + 25, y: container.clientHeight / 2 });
+                Matter.Body.setPosition(floor, { x: container.clientWidth / 2, y: container.clientHeight + 2500 });
+                Matter.Body.setPosition(rightWall, { x: container.clientWidth + 2500, y: container.clientHeight / 2 });
             });
 
             Render.run(render);
