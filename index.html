@@ -1,16 +1,212 @@
-<!-- Impact & Leadership -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yosafat Solaiman | Systems Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #ededed; overflow-x: hidden; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        #boot-loader {
+            position: fixed; inset: 0; z-index: 99999;
+            background-color: #050505;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .hide-loader { opacity: 0; transform: translateY(-20px); pointer-events: none; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .cyber-grid {
+            position: fixed; inset: 0; pointer-events: none; z-index: -2;
+            background-image: 
+                linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .premium-card {
+            background: linear-gradient(180deg, rgba(24, 24, 27, 0.7) 0%, rgba(9, 9, 11, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .premium-card:hover {
+            border-color: rgba(34, 211, 238, 0.6);
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .physics-item {
+            position: absolute; top: 0; left: 0;
+            will-change: transform; cursor: grab; user-select: none;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+        .physics-item:active { cursor: grabbing; box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.8); }
+
+        .scanline-overlay {
+            position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+            background: linear-gradient(to bottom, transparent, rgba(34, 211, 238, 0.2), transparent);
+            height: 8px; animation: scanline 6s linear infinite; opacity: 0.2;
+        }
+        @keyframes scanline { 0% { transform: translateY(-100vh); } 100% { transform: translateY(100vh); } }
+
+        /* Custom Scrollbar for Terminal */
+        #terminal-output::-webkit-scrollbar { width: 6px; }
+        #terminal-output::-webkit-scrollbar-thumb { background: #22d3ee; border-radius: 4px; }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-black antialiased relative overflow-hidden">
+
+    <div id="boot-loader">
+        <div class="font-mono text-left max-w-lg w-full px-6">
+            <p class="text-cyan-500 mb-2">Initialize YS_OS v2.1...</p>
+            <p class="text-zinc-500 text-sm mb-1">[ OK ] Loading system architecture</p>
+            <p class="text-zinc-500 text-sm mb-1">[ OK ] Injecting Tailwind CSS protocols</p>
+            <p class="text-zinc-500 text-sm mb-4">[ OK ] Starting physics engine</p>
+            <div class="w-full h-1 bg-zinc-900 rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-cyan-500 w-0 transition-all duration-1000 ease-out"></div>
+            </div>
+            <p id="boot-status" class="text-white mt-4 animate-pulse">Establishing connection...</p>
+        </div>
+    </div>
+
+    <div class="cyber-grid"></div>
+    <div class="scanline-overlay"></div>
+
+    <header class="fixed top-0 w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/10 opacity-0 transition-opacity duration-1000" id="main-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-4 group cursor-pointer">
+                <div class="w-4 h-4 bg-white rounded-sm shadow-[0_0_10px_white]"></div>
+                <span class="font-extrabold text-2xl tracking-tighter text-white font-mono">YS_OS<span class="text-cyan-500 animate-pulse">_</span></span>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-10 text-xs font-mono font-bold tracking-widest text-zinc-400">
+                <a href="#engineering" class="hover:text-cyan-400 transition-colors">01. SYSTEMS</a>
+                <a href="#leadership" class="hover:text-cyan-400 transition-colors">02. IMPACT</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="Resume_Yosafat.pdf" target="_blank" class="text-xs font-mono px-5 py-2.5 rounded bg-zinc-900 hover:bg-black text-white border border-zinc-700 hover:border-cyan-500 transition-all">RESUME</a>
+                <a href="Yosafat_CV.pdf" target="_blank" class="text-xs font-mono px-5 py-2.5 rounded bg-cyan-500 text-black font-extrabold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(34,211,238,0.5)]">CV</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-40 pb-20 px-6 max-w-7xl mx-auto relative z-10 reveal">
+        <div class="max-w-5xl mb-12">
+            <div class="inline-flex items-center gap-3 px-4 py-1.5 mb-8 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 text-xs font-mono shadow-[0_0_20px_rgba(34,211,238,0.15)] backdrop-blur-md cursor-default">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+                </span>
+                USER.AUTH: YOSAFAT_S // SECURE CONNECTION
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-[1.05] mb-6">
+                Coding interactive web apps <br> 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">& building systems</span> <br> 
+                that actually matter
+            </h1>
+            
+            <p class="text-zinc-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl border-l-4 border-cyan-500 pl-6">
+                High school senior developing modern software, optimizing transit infrastructure, and leveraging technical systems for community advocacy. 
+            </p>
+        </div>
+
+        <div class="mb-8 reveal delay-100">
+            <p class="text-cyan-400 font-mono text-xs uppercase tracking-widest font-bold mb-2 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                <span class="animate-pulse">My Tech Stack</span> <span class='text-zinc-500 ml-2 hidden sm:inline'>// Click background for Gravity Blast!</span>
+            </p>
+            <div id="physics-container" class="relative w-full h-[350px] border border-cyan-500/20 rounded-2xl bg-zinc-950/50 overflow-hidden shadow-[inset_0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-sm cursor-crosshair">
+                <div class="physics-item px-5 py-2 bg-orange-600 text-white font-extrabold rounded-lg border border-white/20">HTML</div>
+                <div class="physics-item px-5 py-2 bg-blue-600 text-white font-extrabold rounded-lg border border-white/20">CSS</div>
+                <div class="physics-item px-5 py-2 bg-yellow-400 text-black font-extrabold rounded-lg border border-white/20">JavaScript</div>
+                <div class="physics-item px-5 py-2 bg-cyan-400 text-black font-extrabold rounded-lg border border-white/20">Tailwind</div>
+                <div class="physics-item px-5 py-2 bg-violet-500 text-white font-extrabold rounded-lg border border-white/20">Python</div>
+                <div class="physics-item px-5 py-2 bg-red-600 text-white font-extrabold rounded-lg border border-white/20">Java</div>
+                <div class="physics-item px-6 py-3 bg-emerald-400 text-black font-extrabold rounded-full aspect-square flex items-center justify-center border border-white/20">4.29 GPA</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engineering (Subtivity) - Case Study Format -->
+    <section id="engineering" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10 reveal">
+        <div class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <div class="h-px w-12 bg-cyan-500"></div>
+                <span class="text-sm font-mono text-cyan-400 font-bold uppercase tracking-widest">01 // Core Systems</span>
+            </div>
+            <h2 class="text-5xl font-black tracking-tighter text-white">Subtivity Transit Explorer</h2>
+        </div>
+
+        <div class="bg-zinc-950/90 border border-white/10 rounded-[22px] p-8 md:p-12 lg:flex gap-12 relative z-10 hover:border-cyan-500/30 transition-colors duration-500">
+            <div class="lg:w-1/2 mb-10 lg:mb-0 space-y-6">
+                <h3 class="text-4xl font-black text-white">Urban Mobility <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Architecture.</span></h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="text-cyan-400 font-mono text-xs font-bold uppercase tracking-widest mb-1">The Challenge</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Commuters lack unified, real-time spatial awareness of metropolitan transit delays, leading to compounding infrastructural bottlenecks.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-violet-400 font-mono text-xs font-bold uppercase tracking-widest mb-1">The Architecture</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Engineered a lightweight, vanilla JavaScript routing application (All Star Code Capstone) utilizing live telemetry data. Built without heavy frameworks to reduce client-side latency.</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-3 py-1.5 bg-orange-950/50 rounded text-xs font-mono text-orange-400 border border-orange-500/30">HTML5</span>
+                    <span class="px-3 py-1.5 bg-blue-950/50 rounded text-xs font-mono text-blue-400 border border-blue-500/30">Tailwind CSS</span>
+                    <span class="px-3 py-1.5 bg-yellow-950/50 rounded text-xs font-mono text-yellow-400 border border-yellow-500/30">Vanilla JS</span>
+                </div>
+                
+                <div class="pt-4 flex gap-4">
+                    <a href="https://yosafat-solaiman.github.io/demo_day/" target="_blank" class="px-6 py-3 bg-white hover:bg-cyan-400 text-black font-extrabold rounded-lg text-sm transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.6)]">INITIATE APP</a>
+                </div>
+            </div>
+            
+            <!-- LIVE INTERACTIVE TERMINAL -->
+            <div class="lg:w-1/2 bg-black h-96 rounded-2xl p-6 relative border border-zinc-800 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] flex flex-col font-mono text-sm text-zinc-400 group">
+                <div class="flex gap-2 mb-4 shrink-0">
+                    <div class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_5px_red]"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_5px_yellow]"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_5px_green]"></div>
+                </div>
+                
+                <div id="terminal-output" class="flex-1 overflow-y-auto mb-2 space-y-2 pr-2">
+                    <p class="text-cyan-400">Welcome to YS_OS Shell.</p>
+                    <p>Type 'help' to see available commands.</p>
+                </div>
+
+                <div class="flex items-center gap-2 shrink-0 border-t border-zinc-800 pt-3 mt-auto">
+                    <span class="text-cyan-400">root@YS_OS:~$</span>
+                    <input type="text" id="terminal-input" class="bg-transparent text-white outline-none flex-1 focus:ring-0 placeholder-zinc-700" placeholder="_" autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact & Leadership -->
     <section id="leadership" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10 reveal">
         <div class="mb-16">
             <div class="flex items-center gap-4 mb-4">
                 <div class="h-px w-12 bg-cyan-500"></div>
-                <span class="text-sm font-mono text-cyan-400 font-bold uppercase tracking-widest">03 // Broad Operations</span>
+                <span class="text-sm font-mono text-cyan-400 font-bold uppercase tracking-widest">02 // Broad Operations</span>
             </div>
             <h2 class="text-5xl font-black tracking-tighter text-white">Impact & Infrastructure</h2>
             <p class="text-zinc-400 mt-4 max-w-2xl text-lg">A curated selection of my core leadership roles and technical fellowships. For a complete history of my 15+ community involvements, refer to my CV.</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- New: Lemelson-MIT Flex -->
+            
             <div class="premium-card p-8 rounded-3xl border-t-2 border-t-violet-500 group lg:col-span-2">
                 <h3 class="text-2xl font-black text-white mb-2 group-hover:text-violet-400 transition-colors">Lemelson-MIT Rail Innovation</h3>
                 <p class="text-violet-500 text-sm font-mono font-bold tracking-widest mb-4">STUDENT RESEARCHER</p>
@@ -23,11 +219,10 @@
                 <p class="text-zinc-400 text-sm">Selected from ~350 applicants to serve as a national thought leader. I mentor Youth as Solutions participants, co-create the Youth Leadership Report, and shape the National Service-Learning Conference.</p>
             </div>
             
-            <!-- Fixed CHIRLA Description -->
             <div class="premium-card p-8 rounded-3xl border-t-2 border-t-emerald-500 group lg:col-span-2">
-                <h3 class="text-2xl font-black text-white mb-2 group-hover:text-emerald-400 transition-colors">CHIRLA / WiseUp</h3>
-                <p class="text-emerald-500 text-sm font-mono font-bold tracking-widest mb-4">CORE LEADER & INTERN</p>
-                <p class="text-zinc-400">Following a rigorous 7-week political education internship, I was selected from hundreds to join the year-long WiseUp Core Leader team, where I actively developed campaign strategies to support CA transit legislation (AB 278).</p>
+                <h3 class="text-2xl font-black text-white mb-2 group-hover:text-emerald-400 transition-colors">Wise Up Community Organizing intern & Core Leader</h3>
+                <p class="text-emerald-500 text-sm font-mono font-bold tracking-widest mb-4">CHIRLA</p>
+                <p class="text-zinc-400">Completed CHIRLA High school internship in political education, advocacy & leadership; selected from hundreds for year long Wise Up Core Leader team to develop campaign strategy supporting AB 278.</p>
             </div>
 
             <div class="premium-card p-8 rounded-3xl border-t-2 border-t-orange-500 group">
@@ -44,23 +239,106 @@
         </div>
     </section>
 
-    <!-- REPLACE YOUR CURRENT SCRIPT WITH THIS UPDATED ONE -->
-    <script>
-        // ... (Keep your existing bootloader, terminal, and copyEmail scripts) ...
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-16 px-6 bg-black flex flex-col items-center gap-6">
+        
+        <button id="copy-email-btn" onclick="copyEmail()" class="flex items-center gap-3 px-6 py-3 rounded-full bg-zinc-900 border border-zinc-700 hover:border-cyan-500 hover:bg-zinc-800 transition-all group relative">
+            <svg id="email-icon" class="w-4 h-4 text-zinc-400 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            
+            <svg id="check-icon" class="w-4 h-4 text-green-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            
+            <span id="email-text" class="text-sm font-mono text-zinc-300 group-hover:text-white transition-colors">Copy Email Address</span>
+        </button>
 
-        // 4. UPGRADED MATTER.JS PHYSICS (Explosions + Bounciness)
+        <p class="text-zinc-600 font-mono text-xs mt-4">SYS.ARCH // © 2027 YOSAFAT SOLAIMAN</p>
+    </footer>
+
+    <script>
+        // 1. BOOT LOADER & SCROLL REVEAL
+        window.addEventListener('load', () => {
+            document.getElementById('progress-bar').style.width = '100%';
+            setTimeout(() => {
+                document.getElementById('boot-status').innerText = "ACCESS GRANTED.";
+                document.getElementById('boot-status').classList.replace('text-white', 'text-cyan-400');
+            }, 1200);
+            setTimeout(() => {
+                document.getElementById('boot-loader').classList.add('hide-loader');
+                document.body.classList.remove('overflow-hidden');
+                document.getElementById('main-nav').style.opacity = '1';
+                revealElements();
+            }, 1800);
+        });
+
+        function revealElements() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", revealElements);
+
+        // 2. INTERACTIVE TERMINAL LOGIC
+        const termInput = document.getElementById('terminal-input');
+        const termOutput = document.getElementById('terminal-output');
+        
+        termInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const command = this.value.trim().toLowerCase();
+                if(!command) return;
+                
+                termOutput.innerHTML += `<p><span class="text-cyan-400">root@YS_OS:~$</span> ${command}</p>`;
+                
+                if (command === 'help') {
+                    termOutput.innerHTML += `<p class="text-zinc-500">Available commands: <span class="text-white">stack, status, clear</span></p>`;
+                } else if (command === 'stack') {
+                    termOutput.innerHTML += `<p class="text-zinc-500">Current stack: HTML, CSS, JS, Tailwind, Python, Java, Matter.js</p>`;
+                } else if (command === 'status') {
+                    termOutput.innerHTML += `<p class="text-green-400">System Nominal. Uptime: 99.9%</p>`;
+                } else if (command === 'clear') {
+                    termOutput.innerHTML = '';
+                } else {
+                    termOutput.innerHTML += `<p class="text-red-400">Command not found: ${command}. Type 'help'</p>`;
+                }
+                
+                this.value = '';
+                termOutput.scrollTop = termOutput.scrollHeight;
+            }
+        });
+
+        // 3. COPY EMAIL MICRO-INTERACTION
+        function copyEmail() {
+            // NOTE: REPLACE THIS WITH YOUR ACTUAL EMAIL
+            const email = "yosafat.solaiman@example.com"; 
+            navigator.clipboard.writeText(email).then(() => {
+                const text = document.getElementById('email-text');
+                const mailIcon = document.getElementById('email-icon');
+                const checkIcon = document.getElementById('check-icon');
+                
+                text.innerText = "Copied to Clipboard!";
+                text.classList.replace('text-zinc-300', 'text-green-400');
+                mailIcon.classList.add('hidden');
+                checkIcon.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    text.innerText = "Copy Email Address";
+                    text.classList.replace('text-green-400', 'text-zinc-300');
+                    mailIcon.classList.remove('hidden');
+                    checkIcon.classList.add('hidden');
+                }, 2500);
+            });
+        }
+
+        // 4. MATTER.JS PHYSICS (Gravity Blast & Thick Boundaries)
         document.addEventListener("DOMContentLoaded", () => {
             const container = document.getElementById('physics-container');
             const items = document.querySelectorAll('.physics-item');
             
-            // Update the hint text to let users know they can click
-            const hintText = document.querySelector('.animate-pulse.text-cyan-400');
-            if(hintText) hintText.innerHTML += " <span class='text-zinc-500 ml-2'>// Click background for Gravity Blast!</span>";
-            
             const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint, Vector } = Matter;
             const engine = Engine.create();
             
-            // Lower global gravity slightly for a floatier, cooler feel
+            // Lower global gravity slightly for a floatier feel
             engine.world.gravity.y = 0.8; 
             
             const render = Render.create({
@@ -92,7 +370,6 @@
                 const startY = 20 + (index * 40); 
                 
                 let body;
-                // Increased restitution (bounciness) and lowered friction
                 if(item.classList.contains('rounded-full')) {
                     body = Bodies.circle(startX, startY, width/2, { restitution: 0.9, friction: 0.05, density: 0.04 });
                 } else {
@@ -114,9 +391,8 @@
             Composite.add(engine.world, mouseConstraint);
             render.mouse = mouse;
 
-            // THE FUN PART: Click to trigger a "Gravity Blast" explosion
+            // GRAVITY BLAST INTERACTION
             container.addEventListener('mousedown', (e) => {
-                // Only explode if they click the background, not grabbing a block
                 if (!mouseConstraint.body) {
                     const rect = container.getBoundingClientRect();
                     const mousePos = {
@@ -130,14 +406,12 @@
                         const dy = body.position.y - mousePos.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         
-                        // Apply force outward from the click
                         if (distance < 400) { 
                             const forceMagnitude = (400 - distance) * 0.0003;
                             Matter.Body.applyForce(body, body.position, {
                                 x: (dx / distance) * forceMagnitude,
-                                y: ((dy / distance) * forceMagnitude) - 0.05 // Extra upward kick
+                                y: ((dy / distance) * forceMagnitude) - 0.05 
                             });
-                            // Add a random spin on blast
                             Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.5);
                         }
                     });
@@ -162,3 +436,5 @@
             Runner.run(Runner.create(), engine);
         });
     </script>
+</body>
+</html>
