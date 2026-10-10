@@ -54,6 +54,7 @@
             position: absolute; top: 0; left: 0;
             will-change: transform; cursor: grab; user-select: none;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
         .physics-item:active { cursor: grabbing; box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.8); }
 
@@ -421,6 +422,99 @@
                     }
                 });
             }
+
+            // 5. MATTER.JS PHYSICS ENGINE
+            const Engine = Matter.Engine,
+                  Render = Matter.Render,
+                  Runner = Matter.Runner,
+                  Bodies = Matter.Bodies,
+                  Composite = Matter.Composite,
+                  Mouse = Matter.Mouse,
+                  MouseConstraint = Matter.MouseConstraint;
+
+            const engine = Engine.create();
+            const container = document.getElementById('physics-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            const render = Render.create({
+                element: container,
+                engine: engine,
+                options: {
+                    width: width,
+                    height: height,
+                    background: 'transparent',
+                    wireframes: false
+                }
+            });
+
+            const items = document.querySelectorAll('.physics-item');
+            const bodies = [];
+            
+            items.forEach((item) => {
+                const rect = item.getBoundingClientRect();
+                const x = Math.random() * (width - 100) + 50;
+                const y = Math.random() * (height - 100) + 50;
+                
+                const isCircle = item.classList.contains('rounded-full');
+                let body;
+                
+                if (isCircle) {
+                    body = Bodies.circle(x, y, rect.width / 2, {
+                        restitution: 0.8, friction: 0.005, render: { visible: false }
+                    });
+                } else {
+                    body = Bodies.rectangle(x, y, rect.width, rect.height, {
+                        restitution: 0.6, friction: 0.1, render: { visible: false }
+                    });
+                }
+                bodies.push(body);
+                
+                Matter.Events.on(engine, 'afterUpdate', function() {
+                    item.style.transform = `translate(${body.position.x - rect.width/2}px, ${body.position.y - rect.height/2}px) rotate(${body.angle}rad)`;
+                });
+            });
+
+            const ground = Bodies.rectangle(width/2, height + 30, width, 60, { isStatic: true, render: { visible: false } });
+            const leftWall = Bodies.rectangle(-30, height/2, 60, height, { isStatic: true, render: { visible: false } });
+            const rightWall = Bodies.rectangle(width + 30, height/2, 60, height, { isStatic: true, render: { visible: false } });
+            const ceiling = Bodies.rectangle(width/2, -30, width, 60, { isStatic: true, render: { visible: false } });
+
+            Composite.add(engine.world, [...bodies, ground, leftWall, rightWall, ceiling]);
+
+            const mouse = Mouse.create(render.canvas);
+            const mouseConstraint = MouseConstraint.create(engine, {
+                mouse: mouse,
+                constraint: { stiffness: 0.2, render: { visible: false } }
+            });
+            Composite.add(engine.world, mouseConstraint);
+            render.mouse = mouse;
+
+            container.addEventListener('click', (e) => {
+                if(e.target === container || e.target.tagName === 'CANVAS') {
+                    bodies.forEach(body => {
+                        Matter.Body.applyForce(body, body.position, {
+                            x: (Math.random() - 0.5) * 0.05,
+                            y: -0.05 - Math.random() * 0.05
+                        });
+                    });
+                }
+            });
+
+            Render.run(render);
+            const runner = Runner.create();
+            Runner.run(runner, engine);
+            
+            // 6. CARD HOVER EFFECT
+            document.getElementById('cards-grid').addEventListener('mousemove', e => {
+                for(const card of document.querySelectorAll('.premium-card')) {
+                    const rect = card.getBoundingClientRect(),
+                          x = e.clientX - rect.left,
+                          y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                }
+            });
         });
 
         // 4. COPY EMAIL
@@ -429,113 +523,20 @@
                 const text = document.getElementById('email-text');
                 const checkIcon = document.getElementById('check-icon');
                 const mailIcon = document.getElementById('email-icon');
-                text.innerText = "COPIED TO CLIPBOARD!";
-                text.classList.add('text-green-400');
+                
+                text.innerText = "COPIED!";
+                text.classList.replace('text-zinc-300', 'text-green-400');
                 mailIcon.classList.add('hidden');
                 checkIcon.classList.remove('hidden');
+                
                 setTimeout(() => {
                     text.innerText = "solaimanyosafat@gmail.com";
-                    text.classList.remove('text-green-400');
-                    mailIcon.classList.remove('hidden');
+                    text.classList.replace('text-green-400', 'text-zinc-300');
                     checkIcon.classList.add('hidden');
+                    mailIcon.classList.remove('hidden');
                 }, 2000);
             });
         }
-
-        // 5. MOUSE SPOTLIGHT EFFECT
-        document.getElementById("cards-grid").onmousemove = e => {
-            for(const card of document.getElementsByClassName("premium-card")) {
-                const rect = card.getBoundingClientRect(),
-                      x = e.clientX - rect.left,
-                      y = e.clientY - rect.top;
-                card.style.setProperty("--mouse-x", `${x}px`);
-                card.style.setProperty("--mouse-y", `${y}px`);
-            }
-        }
-
-        // 6. MATTER.JS PHYSICS
-        document.addEventListener("DOMContentLoaded", () => {
-            const container = document.getElementById('physics-container');
-            const items = document.querySelectorAll('.physics-item');
-            
-            const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint } = Matter;
-            const engine = Engine.create();
-            engine.world.gravity.y = 0.8; 
-            
-            const render = Render.create({
-                element: container, engine: engine,
-                options: { width: container.clientWidth, height: container.clientHeight, background: 'transparent', wireframes: false, pixelRatio: window.devicePixelRatio }
-            });
-            render.canvas.style.opacity = '0';
-
-            const wallOptions = { isStatic: true, render: { visible: false } };
-            const floor = Bodies.rectangle(container.clientWidth / 2, container.clientHeight + 2500, container.clientWidth + 1000, 5000, wallOptions);
-            const ceiling = Bodies.rectangle(container.clientWidth / 2, -2500, container.clientWidth + 1000, 5000, wallOptions);
-            const leftWall = Bodies.rectangle(-2500, container.clientHeight / 2, 5000, container.clientHeight + 1000, wallOptions);
-            const rightWall = Bodies.rectangle(container.clientWidth + 2500, container.clientHeight / 2, 5000, container.clientHeight + 1000, wallOptions);
-
-            Composite.add(engine.world, [floor, ceiling, leftWall, rightWall]);
-
-            const bodies = [];
-            items.forEach((item, index) => {
-                const width = item.offsetWidth;
-                const height = item.offsetHeight;
-                const startX = (container.clientWidth / 2) + (Math.random() * 300 - 150);
-                const startY = 20 + (index * 40); 
-                
-                let body = item.classList.contains('rounded-full') 
-                    ? Bodies.circle(startX, startY, width/2, { restitution: 0.9, friction: 0.05, density: 0.04 })
-                    : Bodies.rectangle(startX, startY, width, height, { restitution: 0.8, friction: 0.05, density: 0.04 });
-                
-                Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.2);
-                bodies.push({ body: body, element: item });
-                Composite.add(engine.world, body);
-            });
-
-            const mouse = Mouse.create(container);
-            const mouseConstraint = MouseConstraint.create(engine, { mouse: mouse, constraint: { stiffness: 0.2, render: { visible: false } } });
-            Composite.add(engine.world, mouseConstraint);
-            render.mouse = mouse;
-
-            container.addEventListener('mousedown', (e) => {
-                if (!mouseConstraint.body) {
-                    const rect = container.getBoundingClientRect();
-                    const mousePos = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-                    bodies.forEach(obj => {
-                        const body = obj.body;
-                        const dx = body.position.x - mousePos.x;
-                        const dy = body.position.y - mousePos.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (distance < 400) { 
-                            const forceMagnitude = (400 - distance) * 0.0003;
-                            Matter.Body.applyForce(body, body.position, {
-                                x: (dx / distance) * forceMagnitude,
-                                y: ((dy / distance) * forceMagnitude) - 0.05 
-                            });
-                            Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.5);
-                        }
-                    });
-                }
-            });
-
-            Matter.Events.on(engine, 'afterUpdate', () => {
-                bodies.forEach(obj => {
-                    const { body, element } = obj;
-                    element.style.transform = `translate(${body.position.x - element.offsetWidth / 2}px, ${body.position.y - element.offsetHeight / 2}px) rotate(${body.angle}rad)`;
-                });
-            });
-
-            window.addEventListener('resize', () => {
-                render.canvas.width = container.clientWidth;
-                render.canvas.height = container.clientHeight;
-                Matter.Body.setPosition(floor, { x: container.clientWidth / 2, y: container.clientHeight + 2500 });
-                Matter.Body.setPosition(rightWall, { x: container.clientWidth + 2500, y: container.clientHeight / 2 });
-            });
-
-            Render.run(render);
-            Runner.run(Runner.create(), engine);
-        });
     </script>
 </body>
 </html>
