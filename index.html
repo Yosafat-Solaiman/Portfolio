@@ -64,6 +64,18 @@
         }
         @keyframes scanline { 0% { transform: translateY(-100vh); } 100% { transform: translateY(100vh); } }
 
+        /* Floating Animation for Avatar */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+
+        /* Terminal Cursor Blink */
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .cursor-blink { display: inline-block; width: 8px; height: 16px; background-color: #22d3ee; animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 4px; }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #000; }
@@ -85,7 +97,7 @@
     <!-- Initial Boot Loader -->
     <div id="boot-loader">
         <div class="font-mono text-left max-w-lg w-full px-6">
-            <p class="text-cyan-500 mb-2">Initialize YS_OS v3.0...</p>
+            <p class="text-cyan-500 mb-2">Initialize YS_OS v4.0...</p>
             <p class="text-zinc-500 text-sm mb-1">[ OK ] Loading system architecture</p>
             <p class="text-zinc-500 text-sm mb-1">[ OK ] Compiling backend node endpoints</p>
             <p class="text-zinc-500 text-sm mb-4">[ OK ] Starting physics engine</p>
@@ -131,15 +143,23 @@
             </nav>
 
             <div class="flex items-center gap-3">
-                <a href="Yosafat_CV.pdf" target="_blank" class="text-xs font-mono px-4 py-2 rounded bg-zinc-900 hover:bg-black text-white border border-zinc-700 hover:border-cyan-500 transition-all hidden md:block">DOWNLOAD CV</a>
-                <button onclick="triggerContact()" class="text-xs font-mono px-5 py-2.5 rounded bg-cyan-500 text-black font-extrabold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(34,211,238,0.5)]">CONTACT ME</button>
+                <a href="Resume_Yosafat.pdf" target="_blank" class="text-xs font-mono px-4 py-2 rounded bg-zinc-900 hover:bg-black text-white border border-zinc-700 hover:border-cyan-500 transition-all hidden md:block shadow-lg">RESUME</a>
+                <a href="Yosafat_CV.pdf" target="_blank" class="text-xs font-mono px-4 py-2 rounded bg-cyan-900/40 hover:bg-cyan-900/60 text-cyan-400 border border-cyan-500/50 hover:border-cyan-400 transition-all hidden md:block">CV</a>
+                <button onclick="triggerContact()" class="text-xs font-mono px-5 py-2.5 rounded bg-cyan-500 text-black font-extrabold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(34,211,238,0.6)]">CONTACT ME</button>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="pt-40 pb-20 px-6 max-w-7xl mx-auto relative z-10 reveal">
+    <section class="pt-32 pb-20 px-6 max-w-7xl mx-auto relative z-10 reveal">
         <div class="max-w-5xl mb-12">
+            
+            <!-- Animated 3D Avatar (Generated Video) -->
+            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-cyan-500 shadow-[0_0_30px_rgba(34,211,238,0.4)] mb-8 animate-float relative group cursor-pointer">
+                <div class="absolute inset-0 bg-cyan-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity z-10 pointer-events-none"></div>
+                <video src="http://googleusercontent.com/generated_video_content/873211014772443814" autoplay loop muted playsinline class="w-full h-full object-cover scale-110"></video>
+            </div>
+
             <div class="inline-flex items-center gap-3 px-4 py-1.5 mb-8 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 text-xs font-mono shadow-[0_0_20px_rgba(34,211,238,0.15)] backdrop-blur-md cursor-default">
                 <span class="relative flex h-2.5 w-2.5">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -155,7 +175,7 @@
             </h1>
             
             <p class="text-zinc-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl border-l-4 border-cyan-500 pl-6">
-                High school senior developing modern software, optimizing transit infrastructure, and leveraging technical systems for community advocacy.
+                Developing modern software, optimizing transit infrastructure, and leveraging technical systems for community advocacy.
             </p>
         </div>
 
@@ -165,13 +185,13 @@
                 <span class="animate-pulse">Tech Stack Physics</span> <span class='text-zinc-500 ml-2 hidden sm:inline'>// Click background for Gravity Blast!</span>
             </p>
             <div id="physics-container" class="relative w-full h-[350px] border border-cyan-500/20 rounded-2xl bg-zinc-950/50 overflow-hidden shadow-[inset_0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-sm cursor-crosshair">
-                <div class="physics-item px-5 py-2 bg-orange-600 text-white font-extrabold rounded-lg border border-white/20">HTML/CSS</div>
-                <div class="physics-item px-5 py-2 bg-blue-600 text-white font-extrabold rounded-lg border border-white/20">React / Next.js</div>
-                <div class="physics-item px-5 py-2 bg-yellow-400 text-black font-extrabold rounded-lg border border-white/20">JavaScript/TS</div>
-                <div class="physics-item px-5 py-2 bg-cyan-400 text-black font-extrabold rounded-lg border border-white/20">Tailwind</div>
-                <div class="physics-item px-5 py-2 bg-violet-500 text-white font-extrabold rounded-lg border border-white/20">Python</div>
-                <div class="physics-item px-5 py-2 bg-red-600 text-white font-extrabold rounded-lg border border-white/20">Java / SQL</div>
-                <div class="physics-item px-6 py-3 bg-emerald-400 text-black font-extrabold rounded-full aspect-square flex items-center justify-center border border-white/20 hover:scale-110 transition-transform">4.29 GPA</div>
+                <div class="physics-item px-5 py-2 bg-orange-600 text-white font-extrabold rounded-lg border border-white/20 hover:scale-110 transition-transform">HTML/CSS</div>
+                <div class="physics-item px-5 py-2 bg-blue-600 text-white font-extrabold rounded-lg border border-white/20 hover:scale-110 transition-transform">React / Next.js</div>
+                <div class="physics-item px-5 py-2 bg-yellow-400 text-black font-extrabold rounded-lg border border-white/20 hover:scale-110 transition-transform">JavaScript/TS</div>
+                <div class="physics-item px-5 py-2 bg-cyan-400 text-black font-extrabold rounded-lg border border-white/20 hover:scale-110 transition-transform">Tailwind</div>
+                <div class="physics-item px-5 py-2 bg-violet-500 text-white font-extrabold rounded-lg border border-white/20 hover:scale-110 transition-transform">Python</div>
+                <div class="physics-item px-5 py-2 bg-red-600 text-white font-extrabold rounded-lg border border-white/20 hover:scale-110 transition-transform">Java / SQL</div>
+                <div class="physics-item px-6 py-3 bg-emerald-400 text-black font-extrabold rounded-full aspect-square flex items-center justify-center border border-white/20 hover:scale-125 transition-transform shadow-[0_0_15px_rgba(52,211,153,0.5)]">4.29 GPA</div>
             </div>
         </div>
     </section>
@@ -202,17 +222,18 @@
                 </div>
                 
                 <div class="flex flex-wrap gap-3">
-                    <span class="px-3 py-1.5 bg-blue-950/50 rounded text-xs font-mono text-blue-400 border border-blue-500/30">Tailwind CSS</span>
-                    <span class="px-3 py-1.5 bg-yellow-950/50 rounded text-xs font-mono text-yellow-400 border border-yellow-500/30">JavaScript</span>
-                    <span class="px-3 py-1.5 bg-emerald-950/50 rounded text-xs font-mono text-emerald-400 border border-emerald-500/30">API Routing</span>
+                    <span class="px-3 py-1.5 bg-blue-950/50 rounded text-xs font-mono text-blue-400 border border-blue-500/30 hover:bg-blue-900/80 transition-colors">Tailwind CSS</span>
+                    <span class="px-3 py-1.5 bg-yellow-950/50 rounded text-xs font-mono text-yellow-400 border border-yellow-500/30 hover:bg-yellow-900/80 transition-colors">JavaScript</span>
+                    <span class="px-3 py-1.5 bg-emerald-950/50 rounded text-xs font-mono text-emerald-400 border border-emerald-500/30 hover:bg-emerald-900/80 transition-colors">API Routing</span>
                 </div>
                 
                 <div class="pt-4 flex flex-wrap gap-4">
-                    <a href="https://yosafat-solaiman.github.io/demo_day/" target="_blank" class="px-6 py-3 bg-white hover:bg-cyan-400 text-black font-extrabold rounded-lg text-sm transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.6)] flex items-center gap-2">
+                    <a href="https://yosafat-solaiman.github.io/demo_day/" target="_blank" class="px-6 py-3 bg-white hover:bg-cyan-400 text-black font-extrabold rounded-lg text-sm transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.6)] flex items-center gap-2 group">
                         INITIATE APP
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
-                    <a href="https://github.com/Yosafat-Solaiman/demo_day" target="_blank" class="px-6 py-3 bg-zinc-900 border border-zinc-700 hover:border-white text-white font-extrabold rounded-lg text-sm transition-all flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <a href="https://github.com/Yosafat-Solaiman/demo_day" target="_blank" class="px-6 py-3 bg-zinc-900 border border-zinc-700 hover:border-white text-white font-extrabold rounded-lg text-sm transition-all flex items-center gap-2 group">
+                        <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                         VIEW CODE
                     </a>
                 </div>
@@ -227,13 +248,14 @@
                 </div>
                 
                 <div id="terminal-output" class="flex-1 overflow-y-auto mb-2 space-y-2 pr-2">
-                    <p class="text-cyan-400 type-text">Welcome to YS_OS Shell.</p>
-                    <p class="type-text" style="animation-delay: 0.5s;">Type 'help' to see available commands.</p>
+                    <p class="text-cyan-400">Welcome to YS_OS Shell.</p>
+                    <p>Type 'help' to see available commands.</p>
                 </div>
 
                 <div class="flex items-center gap-2 shrink-0 border-t border-zinc-800 pt-3 mt-auto">
                     <span class="text-cyan-400 font-bold">root@YS_OS:~$</span>
-                    <input type="text" id="terminal-input" class="bg-transparent text-white outline-none flex-1 focus:ring-0 placeholder-zinc-700" placeholder="_" autocomplete="off" autofocus>
+                    <input type="text" id="terminal-input" class="bg-transparent text-white outline-none flex-1 focus:ring-0 placeholder-zinc-700" autocomplete="off" autofocus>
+                    <span class="cursor-blink"></span>
                 </div>
             </div>
         </div>
@@ -258,10 +280,10 @@
                     <p class="text-violet-500 text-sm font-mono font-bold tracking-widest mb-4">STUDENT RESEARCHER</p>
                     <p class="text-zinc-400">Coordinated an engineering team on sustainable rail design. Our proposal was exhibited at the CA State Railroad Museum, where I presented to 100+ attendees and participated in technical panels alongside leaders from 17 transit agencies.</p>
                 </div>
-                <!-- Replaced broken image with a working tech/train placeholder URL -->
-                <div class="w-full md:w-1/2 aspect-video rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-lg relative">
+                <!-- Updated with actual GitHub filename -->
+                <div class="w-full md:w-1/2 aspect-video rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-[0_0_20px_rgba(139,92,246,0.3)] relative">
                     <div class="absolute inset-0 bg-violet-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rail Innovation" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 hover:scale-105">
+                    <img src="railroad-poster.jpg" alt="Rail Innovation Poster" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 hover:scale-110">
                 </div>
             </div>
 
@@ -278,10 +300,10 @@
             </div>
 
             <div class="premium-card p-8 rounded-3xl border-t-2 border-t-orange-500 group">
-                <!-- Replaced broken image with a working tech pitch placeholder URL -->
-                <div class="w-full h-40 mb-6 rounded-xl overflow-hidden border border-white/10 relative">
+                <!-- Updated with actual GitHub filename -->
+                <div class="w-full h-40 mb-6 rounded-xl overflow-hidden border border-white/10 relative shadow-[0_0_20px_rgba(249,115,22,0.3)]">
                     <div class="absolute inset-0 bg-orange-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MIT Invention Program" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 hover:scale-105">
+                    <img src="mit-pitch.jpg" alt="MIT Invention Program Pitch" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 hover:scale-110">
                 </div>
                 <h3 class="text-xl font-black text-white mb-2 group-hover:text-orange-400 transition-colors">MIT Invention Program</h3>
                 <p class="text-orange-500 text-sm font-mono font-bold tracking-widest mb-4">PROTOTYPE DEVELOPER</p>
@@ -292,7 +314,7 @@
 
     <!-- Footer -->
     <footer class="border-t border-white/10 py-16 px-6 bg-black flex flex-col items-center gap-6 relative z-10">
-        <button id="copy-email-btn" onclick="copyEmail()" class="flex items-center gap-3 px-8 py-4 rounded-full bg-zinc-900 border border-zinc-700 hover:border-cyan-500 hover:bg-zinc-800 transition-all group relative overflow-hidden">
+        <button id="copy-email-btn" onclick="copyEmail()" class="flex items-center gap-3 px-8 py-4 rounded-full bg-zinc-900 border border-zinc-700 hover:border-cyan-500 hover:bg-zinc-800 transition-all group relative overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(34,211,238,0.3)]">
             <svg id="email-icon" class="w-5 h-5 text-zinc-400 group-hover:text-cyan-400 transition-colors relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             <svg id="check-icon" class="w-5 h-5 text-green-500 hidden relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
             <span id="email-text" class="font-mono text-zinc-300 group-hover:text-white font-bold tracking-wider transition-colors relative z-10">solaimanyosafat@gmail.com</span>
