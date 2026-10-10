@@ -176,220 +176,8 @@
                     <!-- Cyan Overlay that disappears on hover -->
                     <div class="absolute inset-0 bg-cyan-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity z-20 pointer-events-none"></div>
                     
-                    <!-- Updated to use a dynamic avatar generator -->
-                    <img src="https://api.dicebear.com/9.x/micah/svg?seed=Yosafat" alt="Yosafat Avatar" class="w-full h-full object-cover rounded-full bg-zinc-900 z-10 pointer-events-none">
-        
-                </div>
-        
-                <!-- Waving Hand Emoji -->
-                <div class="absolute -bottom-1 -right-3 text-4xl md:text-5xl transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:animate-wave z-30 drop-shadow-lg pointer-events-none">
-                    👋
-                </div>
-                
-                <!-- Tooltip Instructions -->
-                <div class="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-zinc-900 text-[10px] text-cyan-400 px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none font-mono border border-cyan-500/30 font-bold uppercase tracking-widest shadow-xl">
-                    Click and Hold!
-                </div>
-            </div>
-
-            <br>
-            <div class="inline-flex items-center gap-3 px-4 py-1.5 mb-8 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 text-xs font-mono shadow-[0_0_20px_rgba(34,211,238,0.15)] backdrop-blur-md cursor-default">
-                <span class="relative flex h-2.5 w-2.5">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
-                </span>
-                SYS.ADMIN: YOSAFAT_S // OPEN TO ROLES
-            </div>
-            
-            <hI see exactly what you mean in `image_a598be.png`[cite: 6]. The placeholder image loaded the text "YOSAFAT SWE", which doesn't look like a real profile picture. 
-
-To fix this perfectly, I have switched the avatar image source to automatically pull your real, high-quality profile picture directly from your GitHub account (`https://github.com/Yosafat-Solaiman.png`). This is 100% reliable and requires no local file setup.
-
-I also changed your title from "Systems Architect" to "Software Engineer" in the `<title>` tag. It sounds highly professional, fits your current trajectory perfectly, and is the industry standard without being overly exaggerated.
-
-Here is the complete, full 600+ line code with those fixes applied. 
-
-```html
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yosafat Solaiman | Software Engineer</title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap)" rel="stylesheet">
-    <script src="[https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js](https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js)"></script>
-    
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #ededed; overflow-x: hidden; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-        
-        /* Loaders & Overlays */
-        #boot-loader, #contact-loader {
-            position: fixed; inset: 0; z-index: 99999;
-            background-color: #050505;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        #contact-loader { display: none; opacity: 0; z-index: 100000; }
-        .hide-loader { opacity: 0; transform: translateY(-20px); pointer-events: none; }
-
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .cyber-grid {
-            position: fixed; inset: 0; pointer-events: none; z-index: -2;
-            background-image: 
-                linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        /* Spotlight interactive cards */
-        #cards-grid:hover .premium-card::before { opacity: 1; }
-        .premium-card {
-            background: rgba(24, 24, 27, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            position: relative; overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .premium-card::before {
-            content: ""; position: absolute; inset: 0; border-radius: inherit;
-            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(34, 211, 238, 0.08), transparent 40%);
-            opacity: 0; transition: opacity 500ms; pointer-events: none; z-index: 0;
-        }
-        .premium-card > * { position: relative; z-index: 1; }
-        .premium-card:hover { transform: translateY(-5px); border-color: rgba(34, 211, 238, 0.4); box-shadow: 0 0 30px rgba(34, 211, 238, 0.1); }
-        
-        .physics-item {
-            position: absolute; top: 0; left: 0;
-            will-change: transform; cursor: grab; user-select: none;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-            z-index: 10;
-        }
-        .physics-item:active { cursor: grabbing; box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.8); }
-
-        .scanline-overlay {
-            position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-            background: linear-gradient(to bottom, transparent, rgba(34, 211, 238, 0.2), transparent);
-            height: 8px; animation: scanline 6s linear infinite; opacity: 0.2;
-        }
-        @keyframes scanline { 0% { transform: translateY(-100vh); } 100% { transform: translateY(100vh); } }
-
-        /* Floating Animation for Avatar */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float { animation: float 4s ease-in-out infinite; }
-
-        /* Waving Hand Animation */
-        @keyframes wave {
-            0% { transform: rotate(0deg); }
-            15% { transform: rotate(14deg); }
-            30% { transform: rotate(-8deg); }
-            45% { transform: rotate(14deg); }
-            60% { transform: rotate(-4deg); }
-            75% { transform: rotate(10deg); }
-            100% { transform: rotate(0deg); }
-        }
-        .animate-wave { animation: wave 2s infinite; transform-origin: 70% 70%; }
-
-        /* Terminal Cursor Blink */
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        .cursor-blink { display: inline-block; width: 8px; height: 16px; background-color: #22d3ee; animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 4px; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #22d3ee; border-radius: 4px; }
-        
-        .glitch-hover:hover { animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite; }
-        @keyframes glitch-anim {
-            0% { transform: translate(0) }
-            20% { transform: translate(-2px, 2px) }
-            40% { transform: translate(-2px, -2px) }
-            60% { transform: translate(2px, 2px) }
-            80% { transform: translate(2px, -2px) }
-            100% { transform: translate(0) }
-        }
-    </style>
-</head>
-<body class="selection:bg-cyan-500 selection:text-black antialiased relative overflow-hidden">
-
-    <!-- Initial Boot Loader -->
-    <div id="boot-loader">
-        <div class="font-mono text-left max-w-lg w-full px-6">
-            <p class="text-cyan-500 mb-2">Initialize YS_OS v4.0...</p>
-            <p class="text-zinc-500 text-sm mb-1">[ OK ] Loading system architecture</p>
-            <p class="text-zinc-500 text-sm mb-1">[ OK ] Compiling backend node endpoints</p>
-            <p class="text-zinc-500 text-sm mb-4">[ OK ] Starting physics engine</p>
-            <div class="w-full h-1 bg-zinc-900 rounded-full overflow-hidden">
-                <div id="progress-bar" class="h-full bg-cyan-500 w-0 transition-all duration-1000 ease-out"></div>
-            </div>
-            <p id="boot-status" class="text-white mt-4 animate-pulse">Establishing secure connection...</p>
-        </div>
-    </div>
-
-    <!-- Contact Transition Loader -->
-    <div id="contact-loader">
-        <div class="font-mono text-left max-w-lg w-full px-6">
-            <p class="text-red-500 mb-2 font-bold uppercase animate-pulse">>> INITIATING SECURE COMMLINK <<</p>
-            <p id="contact-log-1" class="text-zinc-500 text-sm mb-1 hidden">[ RUN ] Bypassing proxy servers...</p>
-            <p id="contact-log-2" class="text-zinc-500 text-sm mb-1 hidden">[ RUN ] Establishing direct line to Yosafat...</p>
-            <p id="contact-log-3" class="text-cyan-400 text-sm mb-4 hidden">[ OK ] Connection Secured. Transferring...</p>
-            <div class="w-full h-1 bg-zinc-900 rounded-full overflow-hidden mt-4">
-                <div id="contact-progress" class="h-full bg-red-500 w-0 transition-all ease-out"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="cyber-grid"></div>
-    <div class="scanline-overlay"></div>
-
-    <!-- Upgraded Navigation -->
-    <header class="fixed top-0 w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/10 opacity-0 transition-opacity duration-1000" id="main-nav">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-4 group cursor-pointer hover:scale-105 transition-transform">
-                <div class="w-4 h-4 bg-white rounded-sm shadow-[0_0_10px_white]"></div>
-                <span class="font-extrabold text-2xl tracking-tighter text-white font-mono">YS_OS<span class="text-cyan-500 animate-pulse">_</span></span>
-            </div>
-            
-            <nav class="hidden lg:flex items-center gap-8 text-xs font-mono font-bold tracking-widest text-zinc-400">
-                <a href="#engineering" class="hover:text-cyan-400 hover:-translate-y-1 transition-all">01. SYSTEMS</a>
-                <a href="#leadership" class="hover:text-cyan-400 hover:-translate-y-1 transition-all">02. IMPACT</a>
-                <a href="[https://github.com/Yosafat-Solaiman](https://github.com/Yosafat-Solaiman)" target="_blank" class="hover:text-white hover:-translate-y-1 transition-all flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GITHUB
-                </a>
-                <a href="[https://linkedin.com/in/yosafat-solaiman-44276137b](https://linkedin.com/in/yosafat-solaiman-44276137b)" target="_blank" class="hover:text-blue-400 hover:-translate-y-1 transition-all">LINKEDIN</a>
-            </nav>
-
-            <div class="flex items-center gap-3">
-                <a href="Resume_Yosafat.pdf" target="_blank" class="text-xs font-mono px-4 py-2 rounded bg-zinc-900 hover:bg-black text-white border border-zinc-700 hover:border-cyan-500 transition-all hidden md:block shadow-lg">RESUME</a>
-                <a href="Yosafat_CV.pdf" target="_blank" class="text-xs font-mono px-4 py-2 rounded bg-cyan-900/40 hover:bg-cyan-900/60 text-cyan-400 border border-cyan-500/50 hover:border-cyan-400 transition-all hidden md:block">CV</a>
-                <button onclick="triggerContact()" class="text-xs font-mono px-5 py-2.5 rounded bg-cyan-500 text-black font-extrabold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(34,211,238,0.6)]">CONTACT ME</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-6 max-w-7xl mx-auto relative z-10 reveal">
-        <div class="max-w-5xl mb-12">
-            
-            <!-- Custom Interactive Face Avatar Container -->
-            <div class="relative w-28 h-28 md:w-36 md:h-36 mb-8 group cursor-pointer inline-block">
-                
-                <!-- Main Avatar Circle Base -->
-                <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500 shadow-[0_0_30px_rgba(34,211,238,0.4)] animate-float bg-zinc-900 relative p-1 z-10 transition-transform duration-300 group-hover:scale-105 group-active:scale-95">
-                    
-                    <!-- Cyan Overlay that disappears on hover -->
-                    <div class="absolute inset-0 bg-cyan-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity z-20 pointer-events-none"></div>
-                    
                     <!-- Pulls your actual GitHub Profile Picture automatically -->
-                    <img src="[https://github.com/Yosafat-Solaiman.png](https://github.com/Yosafat-Solaiman.png)" alt="Yosafat Avatar" class="w-full h-full object-cover rounded-full bg-zinc-900 z-10 pointer-events-none">
+                    <img src="https://github.com/Yosafat-Solaiman.png" alt="Yosafat Avatar" class="w-full h-full object-cover rounded-full bg-zinc-900 z-10 pointer-events-none">
         
                 </div>
         
@@ -473,11 +261,11 @@ Here is the complete, full 600+ line code with those fixes applied.
                 </div>
                 
                 <div class="pt-4 flex flex-wrap gap-4">
-                    <a href="[https://yosafat-solaiman.github.io/demo_day/](https://yosafat-solaiman.github.io/demo_day/)" target="_blank" class="px-6 py-3 bg-white hover:bg-cyan-400 text-black font-extrabold rounded-lg text-sm transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.6)] flex items-center gap-2 group">
+                    <a href="https://yosafat-solaiman.github.io/demo_day/" target="_blank" class="px-6 py-3 bg-white hover:bg-cyan-400 text-black font-extrabold rounded-lg text-sm transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.6)] flex items-center gap-2 group">
                         INITIATE APP
                         <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
-                    <a href="[https://github.com/Yosafat-Solaiman/demo_day](https://github.com/Yosafat-Solaiman/demo_day)" target="_blank" class="px-6 py-3 bg-zinc-900 border border-zinc-700 hover:border-white text-white font-extrabold rounded-lg text-sm transition-all flex items-center gap-2 group">
+                    <a href="https://github.com/Yosafat-Solaiman/demo_day" target="_blank" class="px-6 py-3 bg-zinc-900 border border-zinc-700 hover:border-white text-white font-extrabold rounded-lg text-sm transition-all flex items-center gap-2 group">
                         <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                         VIEW CODE
                     </a>
@@ -526,7 +314,7 @@ Here is the complete, full 600+ line code with those fixes applied.
                 </div>
                 <div class="w-full md:w-1/2 aspect-video rounded-xl overflow-hidden border border-white/10 shrink-0 shadow-[0_0_20px_rgba(139,92,246,0.3)] relative bg-zinc-900">
                     <div class="absolute inset-0 bg-violet-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10"></div>
-                    <img src="railroad-poster.jpg" alt="Rail Innovation Poster" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 hover:scale-110" onerror="this.src='[https://images.unsplash.com/photo-1474487548417-781cb71495f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80](https://images.unsplash.com/photo-1474487548417-781cb71495f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'">
+                    <img src="railroad-poster.jpg" alt="Rail Innovation Poster" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1474487548417-781cb71495f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
                 </div>
             </div>
 
@@ -545,7 +333,7 @@ Here is the complete, full 600+ line code with those fixes applied.
             <div class="premium-card p-8 rounded-3xl border-t-2 border-t-orange-500 group">
                 <div class="w-full h-40 mb-6 rounded-xl overflow-hidden border border-white/10 relative shadow-[0_0_20px_rgba(249,115,22,0.3)] bg-zinc-900">
                     <div class="absolute inset-0 bg-orange-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10"></div>
-                    <img src="mit-pitch.jpg" alt="MIT Invention Program Pitch" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 hover:scale-110" onerror="this.src='[https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80](https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'">
+                    <img src="mit-pitch.jpg" alt="MIT Invention Program Pitch" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
                 </div>
                 <h3 class="text-xl font-black text-white mb-2 group-hover:text-orange-400 transition-colors">MIT Invention Program</h3>
                 <p class="text-orange-500 text-sm font-mono font-bold tracking-widest mb-4">PROTOTYPE DEVELOPER</p>
@@ -562,7 +350,7 @@ Here is the complete, full 600+ line code with those fixes applied.
             <div class="bg-black/90 px-4 py-3 border-b border-white/10 flex justify-between items-center backdrop-blur-md">
                 <div class="flex items-center gap-3">
                     <div class="relative">
-                        <img src="[https://api.dicebear.com/9.x/bottts-neutral/svg?seed=yoshi&backgroundColor=22d3ee](https://api.dicebear.com/9.x/bottts-neutral/svg?seed=yoshi&backgroundColor=22d3ee)" class="w-8 h-8 rounded-full border border-cyan-500" alt="Yoshi">
+                        <img src="https://api.dicebear.com/9.x/bottts-neutral/svg?seed=yoshi&backgroundColor=22d3ee" class="w-8 h-8 rounded-full border border-cyan-500" alt="Yoshi">
                         <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border border-black rounded-full animate-pulse"></div>
                     </div>
                     <div>
@@ -608,22 +396,44 @@ Here is the complete, full 600+ line code with those fixes applied.
 
     <!-- Combined Scripts -->
     <script>
-        // BOOT LOADER & SCROLL REVEAL
-        window.addEventListener('load', () => {
-            document.getElementById('progress-bar').style.width = '100%';
-            setTimeout(() => {
-                document.getElementById('boot-status').innerText = "ACCESS GRANTED.";
-                document.getElementById('boot-status').classList.replace('text-white', 'text-cyan-400');
-            }, 1200);
-            setTimeout(() => {
-                document.getElementById('boot-loader').classList.add('hide-loader');
-                document.body.classList.remove('overflow-hidden');
-                document.getElementById('main-nav').style.opacity = '1';
-                revealElements();
-                initPhysics();
-            }, 1800);
+        // BOOT LOADER - CHANGED TO DOMContentLoaded FOR RELIABILITY
+        document.addEventListener('DOMContentLoaded', () => {
+            const runBootSequence = () => {
+                document.getElementById('progress-bar').style.width = '100%';
+                
+                setTimeout(() => {
+                    document.getElementById('boot-status').innerText = "ACCESS GRANTED.";
+                    document.getElementById('boot-status').classList.replace('text-white', 'text-cyan-400');
+                }, 800);
+                
+                setTimeout(() => {
+                    const loader = document.getElementById('boot-loader');
+                    loader.classList.add('hide-loader');
+                    
+                    // Actually remove it from the display flow so it doesn't block clicks
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 800);
+                    
+                    document.body.classList.remove('overflow-hidden');
+                    document.getElementById('main-nav').style.opacity = '1';
+                    
+                    revealElements();
+                    
+                    // Wrapped in try-catch in case Matter.js fails to load over network
+                    try {
+                        initPhysics();
+                    } catch (e) {
+                        console.log("Physics engine skipped (Matter.js not loaded).", e);
+                    }
+                }, 1400);
+            };
+
+            // Run the boot sequence immediately
+            runBootSequence();
         });
 
+        // SCROLL REVEAL
         function revealElements() {
             const reveals = document.querySelectorAll(".reveal");
             reveals.forEach(rev => {
@@ -667,7 +477,6 @@ Here is the complete, full 600+ line code with those fixes applied.
             
             if(yoshiOpen) {
                 window.classList.remove('hidden');
-                // Hide the red notification dot once opened
                 const redDot = document.querySelector('#mini-yoshi-widget > button > span');
                 if (redDot) redDot.classList.add('hidden');
                 setTimeout(() => {
@@ -751,11 +560,11 @@ Here is the complete, full 600+ line code with those fixes applied.
                                 termOutput.innerHTML += `<p class="text-violet-400">Yosafat Solaiman. Engineer. Leader. Architect.</p>`;
                                 break;
                             case 'github':
-                                window.open("[https://github.com/Yosafat-Solaiman](https://github.com/Yosafat-Solaiman)", "_blank");
+                                window.open("https://github.com/Yosafat-Solaiman", "_blank");
                                 termOutput.innerHTML += `<p class="text-cyan-400">Opening GitHub repository...</p>`;
                                 break;
                             case 'linkedin':
-                                window.open("[https://linkedin.com/in/yosafat-solaiman-44276137b](https://linkedin.com/in/yosafat-solaiman-44276137b)", "_blank");
+                                window.open("https://linkedin.com/in/yosafat-solaiman-44276137b", "_blank");
                                 termOutput.innerHTML += `<p class="text-blue-400">Opening LinkedIn profile...</p>`;
                                 break;
                             case 'clear':
@@ -788,6 +597,11 @@ Here is the complete, full 600+ line code with those fixes applied.
 
         // MATTER.JS PHYSICS ENGINE
         function initPhysics() {
+            if (typeof Matter === 'undefined') {
+                console.warn("Matter.js is not loaded.");
+                return;
+            }
+
             const Engine = Matter.Engine,
                   Render = Matter.Render,
                   Runner = Matter.Runner,
