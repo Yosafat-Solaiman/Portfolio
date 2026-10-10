@@ -73,6 +73,18 @@
         }
         .animate-float { animation: float 4s ease-in-out infinite; }
 
+        /* Waving Hand Animation */
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            15% { transform: rotate(14deg); }
+            30% { transform: rotate(-8deg); }
+            45% { transform: rotate(14deg); }
+            60% { transform: rotate(-4deg); }
+            75% { transform: rotate(10deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .animate-wave { animation: wave 2s infinite; transform-origin: 70% 70%; }
+
         /* Terminal Cursor Blink */
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .cursor-blink { display: inline-block; width: 8px; height: 16px; background-color: #22d3ee; animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 4px; }
@@ -155,12 +167,37 @@
     <section class="pt-32 pb-20 px-6 max-w-7xl mx-auto relative z-10 reveal">
         <div class="max-w-5xl mb-12">
             
-            <!-- Highly Detailed Human Avatar -->
-            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-cyan-500 shadow-[0_0_30px_rgba(34,211,238,0.4)] mb-8 animate-float relative group bg-black flex items-center justify-center p-1 cursor-pointer">
-                <div class="absolute inset-0 bg-cyan-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity z-10 pointer-events-none"></div>
-                <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Felix&backgroundColor=050505&clothing=blazerAndShirt&accessories=prescription02&hair=shortHairShortWaved&skinColor=edb98a" alt="Yosafat Avatar" class="w-full h-full object-cover rounded-full bg-zinc-900">
+            <!-- Custom Interactive Face Avatar Container -->
+            <div class="relative w-28 h-28 md:w-36 md:h-36 mb-8 group cursor-pointer inline-block">
+                
+                <!-- Main Avatar Circle Base -->
+                <div class="w-full h-full rounded-full overflow-hidden border-2 border-cyan-500 shadow-[0_0_30px_rgba(34,211,238,0.4)] animate-float bg-zinc-900 relative p-1 z-10 transition-transform duration-300 group-hover:scale-105 group-active:scale-95">
+                    
+                    <!-- Cyan Overlay that disappears on hover -->
+                    <div class="absolute inset-0 bg-cyan-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity z-20 pointer-events-none"></div>
+                    
+                    <!-- Default Face (Neutral) -->
+                    <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Yosafat&backgroundColor=050505&hairColor=2c1b18&accessories=prescription02&clothing=shirtCollar&clothingColor=262e33&skinColor=edb98a&top=shortHairShortWaved&mouth=default&eyes=default" alt="Yosafat Neutral" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-100 group-hover:opacity-0 z-10">
+                    
+                    <!-- Hover Face (Smile) -->
+                    <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Yosafat&backgroundColor=050505&hairColor=2c1b18&accessories=prescription02&clothing=shirtCollar&clothingColor=262e33&skinColor=edb98a&top=shortHairShortWaved&mouth=smile&eyes=happy" alt="Yosafat Smile" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 group-active:opacity-0 z-10">
+        
+                    <!-- Click/Active Face (Wink & Tongue) -->
+                    <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Yosafat&backgroundColor=050505&hairColor=2c1b18&accessories=prescription02&clothing=shirtCollar&clothingColor=262e33&skinColor=edb98a&top=shortHairShortWaved&mouth=tongue&eyes=wink" alt="Yosafat Wink" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-150 opacity-0 group-active:opacity-100 z-20">
+                </div>
+        
+                <!-- Waving Hand Emoji -->
+                <div class="absolute -bottom-1 -right-3 text-4xl md:text-5xl transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:animate-wave z-30 drop-shadow-lg pointer-events-none">
+                    👋
+                </div>
+                
+                <!-- Tooltip Instructions -->
+                <div class="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-zinc-900 text-[10px] text-cyan-400 px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none font-mono border border-cyan-500/30 font-bold uppercase tracking-widest shadow-xl">
+                    Click and Hold!
+                </div>
             </div>
 
+            <br>
             <div class="inline-flex items-center gap-3 px-4 py-1.5 mb-8 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 text-xs font-mono shadow-[0_0_20px_rgba(34,211,238,0.15)] backdrop-blur-md cursor-default">
                 <span class="relative flex h-2.5 w-2.5">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
