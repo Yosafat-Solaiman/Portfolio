@@ -177,13 +177,13 @@
                     <div class="absolute inset-0 bg-cyan-500/20 mix-blend-overlay group-hover:opacity-0 transition-opacity z-20 pointer-events-none"></div>
                     
                     <!-- Default Face (Neutral) -->
-                    <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Yosafat&backgroundColor=050505&hairColor=2c1b18&accessories=prescription02&clothing=shirtCollar&clothingColor=262e33&skinColor=edb98a&top=shortHairShortWaved&mouth=default&eyes=default" alt="Yosafat Neutral" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-100 group-hover:opacity-0 z-10">
+                    <img src="https://api.dicebear.com/9.x/micah/svg?seed=Yosafat&hair=doug&glasses=square&baseColor=f9c9b6&shirt=collared" alt="Yosafat Neutral" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-100 group-hover:opacity-0 z-10">
                     
                     <!-- Hover Face (Smile) -->
-                    <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Yosafat&backgroundColor=050505&hairColor=2c1b18&accessories=prescription02&clothing=shirtCollar&clothingColor=262e33&skinColor=edb98a&top=shortHairShortWaved&mouth=smile&eyes=happy" alt="Yosafat Smile" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 group-active:opacity-0 z-10">
+                    <img src="https://api.dicebear.com/9.x/micah/svg?seed=Yosafat&hair=doug&glasses=square&baseColor=f9c9b6&shirt=collared&mouth=smile" alt="Yosafat Smile" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100 group-active:opacity-0 z-10">
         
-                    <!-- Click/Active Face (Wink & Tongue) -->
-                    <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Yosafat&backgroundColor=050505&hairColor=2c1b18&accessories=prescription02&clothing=shirtCollar&clothingColor=262e33&skinColor=edb98a&top=shortHairShortWaved&mouth=tongue&eyes=wink" alt="Yosafat Wink" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-150 opacity-0 group-active:opacity-100 z-20">
+                    <!-- Click/Active Face (Surprised/Playful) -->
+                    <img src="https://api.dicebear.com/9.x/micah/svg?seed=Yosafat&hair=doug&glasses=square&baseColor=f9c9b6&shirt=collared&mouth=surprised" alt="Yosafat Clicked" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-150 opacity-0 group-active:opacity-100 z-20">
                 </div>
         
                 <!-- Waving Hand Emoji -->
@@ -382,7 +382,7 @@
             </div>
         </div>
 
-        <!-- Chat Bubble Toggle (Matches image_a4affe.png perfectly) -->
+        <!-- Chat Bubble Toggle -->
         <button onclick="toggleYoshi()" class="w-12 h-12 rounded-full bg-zinc-950 border border-cyan-500 text-cyan-400 flex items-center justify-center hover:scale-110 transition-transform group relative shadow-[0_0_15px_rgba(34,211,238,0.2)]">
             <!-- Red Notification Dot -->
             <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-black"></span>
@@ -391,7 +391,7 @@
         </button>
     </div>
 
-    <!-- Footer Area (Matches image_a4affe.png perfectly) -->
+    <!-- Footer Area -->
     <footer class="border-t border-white/10 py-24 px-6 bg-black flex flex-col items-center justify-center relative z-10">
         <!-- Exact Email Pill Button Style -->
         <button id="copy-email-btn" onclick="copyEmail()" class="flex items-center gap-3 px-6 py-2.5 rounded-full bg-zinc-900 border border-zinc-700 hover:border-zinc-500 transition-colors">
@@ -399,6 +399,7 @@
         </button>
     </footer>
 
+    <!-- Combined Scripts -->
     <script>
         // BOOT LOADER & SCROLL REVEAL
         window.addEventListener('load', () => {
@@ -412,6 +413,7 @@
                 document.body.classList.remove('overflow-hidden');
                 document.getElementById('main-nav').style.opacity = '1';
                 revealElements();
+                initPhysics();
             }, 1800);
         });
 
@@ -459,7 +461,8 @@
             if(yoshiOpen) {
                 window.classList.remove('hidden');
                 // Hide the red notification dot once opened
-                document.querySelector('#mini-yoshi-widget > button > span').classList.add('hidden');
+                const redDot = document.querySelector('#mini-yoshi-widget > button > span');
+                if (redDot) redDot.classList.add('hidden');
                 setTimeout(() => {
                     window.classList.remove('translate-y-4', 'opacity-0');
                 }, 10);
@@ -564,7 +567,20 @@
                 });
             }
 
-            // MATTER.JS PHYSICS ENGINE
+            // CARD HOVER EFFECT
+            document.getElementById('cards-grid').addEventListener('mousemove', e => {
+                for(const card of document.querySelectorAll('.premium-card')) {
+                    const rect = card.getBoundingClientRect(),
+                          x = e.clientX - rect.left,
+                          y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                }
+            });
+        });
+
+        // MATTER.JS PHYSICS ENGINE
+        function initPhysics() {
             const Engine = Matter.Engine,
                   Render = Matter.Render,
                   Runner = Matter.Runner,
@@ -575,6 +591,7 @@
 
             const engine = Engine.create();
             const container = document.getElementById('physics-container');
+            if(!container) return;
             const width = container.clientWidth;
             const height = container.clientHeight;
 
@@ -635,18 +652,7 @@
             Render.run(render);
             const runner = Runner.create();
             Runner.run(runner, engine);
-            
-            // CARD HOVER EFFECT
-            document.getElementById('cards-grid').addEventListener('mousemove', e => {
-                for(const card of document.querySelectorAll('.premium-card')) {
-                    const rect = card.getBoundingClientRect(),
-                          x = e.clientX - rect.left,
-                          y = e.clientY - rect.top;
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
-                }
-            });
-        });
+        }
 
         // COPY EMAIL
         function copyEmail() {
